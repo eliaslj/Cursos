@@ -1,0 +1,339 @@
+Estratégia de Serviço: é o estágio no qual vamos alinhar a estratégia da TI com o negócio, devemos desenvolver um esforço para entender as necessidades do cliente para que, com base nisso, possamos desenvolver nosso Desenho de Serviço.
+
+Desenho de Serviço: nessa etapa, com base nas informações levantadas durante os passos anteriores, vamos construir o serviço e dar molde ao que ele vai se tornar;
+
+Transição de Serviço: a transição é o meio termo entre o desenho e a operação do serviço, ou seja, ela é o período de preparação para que o serviço seja posto em prática;
+
+Operação de Serviço na operação do serviço é que iremos efetivamente construir e entregar o valor da TI representado pelo serviço finalizado;
+
+Melhoria contínua de Serviço: é a busca por manter o aprimoramento e a melhor qualidade em todos os estágios da operação.
+
+Os cinco princípios que acabamos de conhecer são a parte principal do framework ITIL - são o conteúdo principal do curso - , portanto, serão o foco do estudo durante o restante das aulas de ITIL. O Conteúdo Complementar é composto por:
+
+Livros nacionais e internacionais sobre ITIL;
+Guias para implementação e voltados para áreas específicas;
+Conteúdo livre.
+A AXELOS é proprietárias da ITIL desde 2013, ela é uma joint venture formada pelo governo do Reino Unido e a empresa Capita. Ela também é responsável pela administração de todo portfólio de publicações e certificações profissionais associadas.
+
+Gerenciando Serviços de TI
+O gerenciamento de serviços de TI é fundamental para uma organização séria, pois comprometer-se com o gerenciamento é também comprometer-se com a qualidade do serviço. Como consequência da aplicação de gerenciamento da TI existe o aumento da entrega de resultados dos processos de negócios, pois a TI virou customer service, ou seja, ela não se limita mais à infraestrutura, pois passa a ser essencial para o negócio e para a expansão dele.
+
+Oportunidades X Capacidade
+A área de TI nem sempre está capacitada para entregar serviços que permitam ao negócio crescer, sejam eles quais forem. Portanto, existem muitas demandas no universo empresarial e a TI está inclusa nisso, ela enfrenta muitos desafios que o framework ITIL busca amenizar.
+
+Necessidades dos Negócios
+Listamos aqui algumas das principais necessidades que os negócios irão apresentar durante sua vida útil:
+
+Manter boa qualidade nas entregas;
+Agregar valor para o negócio;
+Buscar a diminuição dos custos de produção;
+Ampliar a capacidade e oferta dos serviços;
+Possuir uma gestão de riscos boa e confiável;
+Buscar uma boa gestão das oportunidades;
+Estabelecimento da conformidade em relação aos negócios.
+Desafios Encontrados pela TI
+A TI costuma enfrentar muitos riscos devido ao trabalho com projetos complexos. Os principais desafios específicos da área de Tecnologia da Informação são:
+
+Competitividade por mão de obra: oferecer capacitação para os membros da equipe é uma forma de contornar a falta de profissionais especializados no mercado e a competição que existe para contratar esses profissionais;
+Evolução constante: uma TI organizada é uma TI que possui estrutura para aproveitar as oportunidades que surgirem e, assim, manter-se em constante evolução ;
+Múltiplos fornecedores: atualmente é impossível trabalhar sem que seja com múltiplos fornecedores, a ITIL ajuda a TI a organizar o gerenciamento das diversas partes;
+Falta de capacidade profissional: ao trabalharmos com ITIL conseguimos mitigar a falta de capacidade profissional ou de recursos;
+Complexidade estrutural: se faz necessário um conjunto simplificado de técnicas, disponibilizadas pela ITIL, para contornar a complexidade estrutural da TI.
+Implantação do Serviços de TI:
+Para implementarmos o serviço de TI temos que utilizar os 4Ps, são eles:
+
+Pessoas: as pessoas são importantes, pois vão performar papéis que executam funções em determinados processos;
+Processos: são itens responsáveis pela coordenação de atividades e pelo resultado derivado das atividades;
+Parceiros: são os fornecedores e parceiros do negócio;
+Produtos: é a tecnologia disponível e produzida alinhada conforme às necessidades do negócio.
+
+
+
+
+A ITIL é um framework público que pode ser adotado sem que se tenha de pagar royalties à empresa. Dentre as razões para se adotar a ITIL está o fato de ser amplamente divulgada no mercado, portanto, tem uma fácil adoção. A ITIL também foi validada em múltiplos ambientes, ou seja tem-se garantia das práticas e sua eficiência, pois ela é uma fonte das melhores práticas de empresas e profissionais de todo o mercado e não depende de tecnologia A ou B.
+
+ITIL não é modelo prescritivo, ou seja, não é uma metodologia.
+
+Benefícios na Adoção
+Integrar a TI ao core business, com a adoção da ITIL é possível alinhar a TI aos negócios da empresa gerando maior valor;
+Valor por meio da TI é o resultado da integração e do alinhamento com o negócio;
+Medir e monitorar o desempenho de fornecedores, ao aplicar os processos da ITIL, é possível buscar a melhoria contínua em relação aos parceiros;
+Gerenciar o budget da TI, ou seja, é criar uma gestão financeira para a área e entender custos de investimento;
+Gerenciar o conhecimento, com a gestão do conhecimento nós podemos centralizar as informações de forma que o conhecimento passe a ser um ativo para a organização;
+Otimizar a entrega de serviços, a partir da ITIL pode não só criar as entregas, mas também otimizá-las constantemente;
+Padronizar o gerenciamento de serviços de TI, o que nos permite acompanhar e medir o desempenho mais facilmente e assim, evoluir;
+Proporcionar uma mudança cultural nas organizações;
+Melhorar o relacionamento com o cliente e usuários. Por meio da gestão alcançaremos a qualidade e com qualidade poderemos melhorar nossas relações com parceiros, fornecedores, clientes e usuários.
+
+
+História da ITIL
+1983 - Projeto de framework de TI para o CCTA;
+
+1986 - Surge um modelo básico para gestão da infraestrutura;
+
+1989 - Oficialmente a biblioteca ganha o nome de ITIL;
+
+2000 - Publicado o primeiro livro ITIL V2 - Suporte ao serviço;
+
+2004 - Projeto ITIL V3 Refresh;
+
+2007 - Lançada a ITIL V3 com 5 livros;
+
+2011 - Publicada uma atualização da ITIL - Momento atual da ITIL.
+
+Temos visto uma busca da Axelos por um elo entre os fundamentos e os níveis intermediários da ITIL. O elo foi criado recentemente, chama-se Certificação ITIL Practitioner e comunica fundamentos e prática. Não sabemos quando irá surgir uma V4.
+
+Evolução da ITIL
+Da sua primeira versão até a versão atual o framework ITIL deixou de ser voltado para a questão puramente técnica e passou a integrar os diferentes aspectos de negócio e tecnologia.
+
+Primeira versão da ITIL - V1: focada exclusivamente na gestão de TI e sua infraestrutura;
+
+Segunda versão da ITIL - V2: nessa segunda versão a ITIL passou a incorporar a ideia de gestão de serviços junto com a TI, mas ainda era muito focada nas questões técnicas;
+
+Terceira versão da ITIL - V3: na última versão da ITIL a TI passou a fazer parte do negócio, aqui surgiram as estratégias de serviço e o alinhamento entre a TI e o negócio.
+
+#######################################################################################################
+Nesta etapa vamos estudar o Gerenciamento dos Serviços.
+
+Vamos começar a entender as definições básicas de gerenciamento de serviços e a diferença entre gerenciamento de serviços e gerenciamento de serviços de TI.
+
+Vamos verificar conceitos sobre processos e funções e também exemplos práticos que nos ajudarão a compreendê-los melhor;
+
+Vamos buscar entender os papéis no gerenciamento de serviços e também os papéis genéricos que poderemos aplicar em qualquer processo;
+
+Também conheceremos a Matriz RACI, que é a representação gráfica do relacionamento entre atividades, tarefas e pessoas: "quem é responsável por cada tarefa?", "quem é o proprietário da tarefa?", "quem é o consultado?". Essas perguntas são respondidas e explicadas por meio da Matriz RACI;
+
+Além disso tudo, vamos estudar algumas competências e habilidades relacionadas ao gerenciamento de serviços de TI.
+
+Partes Interessadas
+São todas as partes que tem algum relacionamento com o serviço que está sendo prestado e que podem afetar e serem afetados pelo serviço, por exemplo, grupos de trabalho.
+
+Equipes de TI
+As equipes de TI são grupos de trabalho que entregam valor por meio da utilização dos processos estudados nesse curso, além disso, são os componentes das equipes que irão performar os processos da Gestão de Serviços em TI, essas pessoas criarão os resultados e construirão as entregas para os clientes. Portanto:
+
+Entregam valor por meio de processos;
+
+Performam processos de GSTI;
+
+Clientes e Usuários
+Cliente é quem paga a conta e acorda o serviço - pode ser interno e/ou externo;
+
+Usuário é quem utiliza o serviço.
+
+Fornecedores
+Podem ser os próprios provedores de TI ou podem ser fornecedores dos provedores de TI.
+Uma empresa que trabalha como "fornecedora" de serviços de TI, a partir do momento que aplicar as práticas do ITIL, passará a ser Provedora de serviços de TI.
+
+Serviços
+Internos: São entregues entre departamentos, para clientes internos;
+
+Externos: São entregues para clientes externos.
+
+O Serviço de TI é ofertado por um fornecedor e é formado por três pilares: tecnologia da informação, pessoas e processos.
+
+Vamos tomar uma empresa provedora de internet como exemplo, para fazer com que o serviço de TI chegue as residências de seus clientes é preciso que a tecnologia, as pessoas e os processos estejam alinhados e funcionando, por meio de processos, para gerar resultados. Conforme podemos verificar na imagem abaixo:
+
+Esquema de Serviço
+
+Neste exemplo:
+
+Pessoas: pode ser entendido como a equipe de instalação, que vai levar os cabos até o ponto de instalação;
+
+Processos: é o que organiza a equipe de trabalho para que ela entregue resultados, no exemplo citado, pode ser o processo de "ativação";
+
+Tecnologia: é aquilo que ajudará a dar suporte aos processos e as pessoas na entrega de resultados.
+
+Outros exemplos de Serviços de TI são:
+
+TV por assinatura;
+Telefonia;
+CRM;
+Sistemas de Inbound Marketing;
+Acesso à internet.
+Gerenciamento de Serviços de TI
+É a aplicação e organização dos serviços de TI mantendo o foco nos objetivos do negócio.
+
+Dentro de uma organização, cada serviço, cada conjunto de pessoas e de processos, é um pacote que precisa ser alinhado por meio do gerenciamento de serviços. E um fator de extrema importância no gerenciamento é a visão holística, que é conseguir visualizar o todo e ir além de um único serviço de TI, isto é, pensando no conjunto inteiro.
+
+Provedor de Serviço de TI
+Fornece serviços para clientes internos ou externos.
+
+É quem vai buscar:
+
+Pessoas;
+Formas de Organização;
+Formas de Gestão;
+Ativos de Processos.
+Junto com:
+
+Dinheiro;
+Tecnologia;
+Recursos de forma geral.
+Esses elementos se somam a fim de entregar resultados e serviços e os serviços devem entregar valor para o cliente.
+
+3 tipos de Provedores de Serviços da ITIL
+Provedor de Serviços Internos: É quando a empresa tem um departamento de suporte interno e próprio da organização;
+Unidades de serviços compartilhados: Fornece serviço de TI compartilhado para mais de uma unidade de negócio, focado em uma única organização;
+Provedor de Serviços Externos - Fornece serviço de TI para clientes externos (para outras organizações).
+O que são Partes Interessadas?
+Vamos pensar num exemplo prático: João trabalha para o Governo Federal e o governo decidiu construir um conjunto habitacional de prédios numa área indígena. Nesta área vivem índios, que por consequência, tem que ser realocados. Neste esforço, tanto João, como o Gerente de Projetos, como boa parte da equipe, o Governo Federal e os Índios são Partes Interessadas.
+
+É importante que fique claro que não devemos considerar como Partes Interessadas somente quem tem interesse positivo, mas também as afetadas com interesses negativos. Muitas vezes temos que entender a sociedade como Parte Interessada em nosso projeto.
+
+Classificando os Serviços
+Os serviços podem ser classificados pela forma como relacionam-se entre si. No caso da Alura, pode-se entender, a partir de um ponto de vista holístico, que o principal serviço prestado é o fornecimento de educação. Mas do ponto de vista da TI, o principal serviço de TI da Alura é um Portal de ensino, pois é nele que o cliente encontra valor.
+
+Abaixo encontra-se uma lista na qual podemos classificar os serviços:
+
+Serviços Principais - É o que o Cliente busca e onde vê valor;
+Serviços de Apoio - São serviços secundários que vão permitir a prestação do serviço principal. No caso da Alura podemos entender como o banco de dados, o cadastro de cursos, etc. Os serviços de apoio podem ou não ser "vistos" pelo Cliente;
+Serviços Intensificadores - No caso da Alura, pode ser o aplicativo mobile para ver as aulas no celular. Eles agregam valor ao serviço principal, mas o principal não depende dele para funcionar. Ou seja, não são serviços essenciais.
+
+############################################################################################
+O que é uma Função?
+A função é uma equipe ou um grupo que emprega um ou diversos processos com objetivos específicos. Pessoas e Funções podem se combinar em processos. Uma Função existe para um fim específico.
+
+4 Funções descritas pela ITIL:
+1) Central de Serviço
+
+A Central de Serviço é a primeira das quatro funções citadas pela ITIL, ela existe para reunir processos, pessoas e profissionais com o objetivo de operacionalizar a TI, ela é o ponto único de contato entre clientes/usuários e desenvolvedores. É pela central de serviços que serão feitas reclamações, requisições de serviço e atendimento ao cliente em geral. É composta por analistas de TI.
+
+2) Gerenciamento Técnico
+
+Outra função da ITIL é o Gerenciamento Técnico, essa função é para os casos em que alguém precisa de um atendimento que demande um especialista em uma área técnica. Assim, a Central de Serviço irá passar o atendimento para o Gerenciamento Técnico no qual se encontra o especialista necessário para a resolução da requisição.
+
+3) Gerenciamento Operacional de TI
+
+O Gerenciamento Operacional da TI é a função responsável por auxiliar a equipe de TI no desenvolvimento do projeto resolvendo problemas corriqueiros que afetariam na produção. Conserto de lâmpadas e ar condicionado, organização dos cabos utilizados são alguns dos exemplos da atuação do grupo operacional.
+
+4) Gerenciamento de Aplicativos
+
+O Gerenciamento de Aplicativos é o gerenciamento de serviços específicos como ERPs, folha de pagamento e softwares em geral. É um subnível da central de serviço como o gerenciamento técnico, porém, de atuação mais específica e pouco abrangente.
+
+Afinal, o que é um processo?
+Um exemplo de processo é moer carne. Temos como entrada a carne, como ferramenta o moedor e resultado a carne moída. Se pensarmos em outros processos neste contexto podemos dizer que o encadeamento de processos vai levar a carne a virar uma almôndega,. Abaixo temos imagens que mostram os processos com mais detalhes.
+
+processos
+
+processoservico
+
+ITIL recomenda
+A ITIL recomenda que os processos tenham as seguintes características:
+
+Gerar resultados claros: quais são as expectativas em relação ao processo que será aplicado?
+
+Voltado para clientes: não adianta aplicar processos apenas voltados para a TI sem levar em consideração o cliente. São os requisitos do cliente que irão dar valor ao projeto;
+
+Eficientes e eficazes: devem atingir os resultados da melhor maneira possível.
+
+Exemplo de processo:
+Vamos trabalhar com um exemplo para melhor compreender a Entrada do processo (Gatilho), para explicar isso, vamos utilizar um cliente que liga dizendo que a internet caiu. Nesse caso, a entrada equivale ao reconhecimento do evento ocorrido, que foi registrado por meio da ligação do cliente. Para restaurar o serviço de internet é preciso aplicar algumas ferramentas e elementos, ou seja, o processo em si, os controles e os habilitadores a fim de obter a saída, que são os resultados esperados para a entrada em questão:
+
+Processo - Ferramentas do processo; - Técnicas do processo; - Base de conhecimento; - Papéis; - Métricas e melhorias.
+
+Controle - Dono do processo; - Ativos de processo; - Política do processo; - Objetivos do processo.
+
+Habilitadores do Processo - Pessoas, funções do processo; - Competências necessárias.
+
+Saída - Resultados esperados e descrição de atividades performadas.
+
+#############################################################################
+Papéis genéricos no ciclo de vida do serviço:
+Dono do Processo: é o personagem que assume a propriedade pelo processo de gerenciamento de incidentes, caso ocorram, ele é o responsável por normalizar a situação, permitindo a continuidade do projeto (Diretor de TI);
+
+Gerente do Processo: é responsável por parte da autoridade do projeto, costuma auxiliar o Dono do Processo (Gerente de TI);
+
+Profissional de Processo: é a pessoa que faz com que o projeto ocorra. Em uma empresa de telemarketing o Profissional de Processo é aquele que atende o telefone (Analista);
+
+Dono de Serviço: é alguém que domina alguma ferramenta específica para o processo em questão (Diretor em Marketing).
+
+Principais responsabilidades:
+Dono do Processo
+As principais responsabilidades elencadas para o Dono do Processo são a de patrocinar o processo, ou seja, ele é responsável por fazer acontecer, isto é, tirar do papel. Apoia no desenvolvimento do desenho do processo e está por perto para oferecer suporte na fase de construção do processo. Garante documentação abrangente, define a documentação necessária e garante que a equipe tenha acesso a ela para o projeto. Ele também define e aprova regras, políticas e padrões baseando-se nas políticas da empresa e nos interesses do cliente. Audita o processo e mantém a comunicação aberta e clara sobre o processo, tanto com a equipe quanto com o cliente, e é quem fornece recursos para o desenvolvimento do processo.
+
+Gerente do Processo
+O Gerente do Processo é a figura responsável pela operacionalização do processo, ou seja, garante que existem meios para que o processo seja desenvolvido pela equipe. Ele garante a realização das atividades mapeadas para o processo, fiscaliza e gerencia o andamento do processo. É a pessoa que também aponta e gerencia recursos para papéis e funções e gerencia recursos em nome do dono do processo como forma de auxiliar o dono do processo. Ainda, busca melhorias contínuas para o projeto em questão.
+
+Profissional do Processo
+O Profissional do Processo é quem realiza atividades do processo e é quem participa ativamente da construção do processo, é a pessoa que traz o projeto à vida. Também é quem conhece o processo e sabe que nas atividades deve-se performar para entregar valor. Ele alinha suas atividades com outros papéis e funções para garantir a entrega de resultados e é responsável por utilizar todas as ferramentas ao seu dispor e, assim, entregar os resultados esperados de cada processo com o qual está envolvido. Por último, também deve manter registros e relatórios atualizados.
+
+Dono do Serviço
+E por fim, o Dono do Serviço tem como responsabilidades representar o serviço na empresa e também para clientes, ou seja, ele é a figura que representa sua área em específico tanto para a empresa durante a criação do processo quanto para clientes externos. Ele entende profundamente o serviço e o valor que entrega, pois é um grande especialista em sua área. Portanto, ele compreende e comunica mudanças no serviço, além de garantir a realização das mesmas no serviço. É a pessoa que também comunica sobre o serviço com todas as partes interessadas tanto internas quanto externas. O dono do serviço participa ativamente de negociações de acordos de nível de serviço, sendo ele o maior representante do próprio serviço e responde pela entrega do serviço. Como as outras funções também busca melhorias contínuas no serviço.
+
+Matriz de atribuição de responsabilidades (RACI)
+R - Responsável (Responsible), geralmente é o profissional do processo;
+
+A - Prestador de Contas (accountable), é o dono do processo;
+
+C - Consultado (consulted), pode ser um especialista em determinada atividade;
+
+I - Informado (informed), pode ser um diretor da empresa ou dono de um serviço.
+
+Abaixo temos um exemplo de Matriz RACI. Ao lado esquerdo encontra-se a coluna de processos e preenchendo as lacunas temos as devidas responsabilidades.
+
+###########################################
+##O que estudaremos neste módulo?
+
+Visão macro do ciclo de vida de serviços da ITIL;
+
+Introdução aos livros do ciclo de vida do serviço;
+
+Apresentação dos processos da ITIL 2011.
+
+##Framework ITIL
+
+Baseia-se em um ciclo de vida de serviço que contém 5 estágios.
+
+ciclodevida
+
+Estratégia de Serviço - Vai relacionar o trabalho com o negócio;
+
+Desenho de Serviço - Vai construir o serviço;
+
+Transição de Serviço - Para fazer uma interface entre o desenho e a operação;
+
+Operação de Serviço - Vai realizar valor para a TI e para o negócio;
+
+Melhoria contínua - Precisa ser entendida como importante em todos ciclos de vida.
+
+O ciclo de vida do serviço é uma apresentação de todas as etapas da ITIL - da concepção até sua evolução. É ele que une as 5 publicações principais do framework (Estratégia de Serviço, Desenho de Serviço, Transição do Serviço, Operação do Serviço e Melhoria Contínua).
+
+###Estratégia de Serviço
+
+É o que alinha os objetivos estratégicos de uma organização com a capacidade da TI. Esta publicação nos apresenta o gerenciamento de serviços de TI como ativo estratégico para organizações e como parte do negócio. É por meio da gestão de portfólio, que a estratégia de serviço apoia a seleção, priorização e escolha de oportunidades. Esse processo também orienta a estruturação de processos com base em padrões de atividades de negócio, objetivos, visão e necessidades do negócio. Também apresenta análises de mercado, características gerais de provedores de serviços e noções para implementação da estratégia para o serviço.
+
+Os Processos inclusos na publicação da ITIL são:
+
+Gerenciamento estratégico para serviço de TI- Esse processo é o que busca uma visão holística e busca agregar os outros processos (não cai na prova);
+
+Gerenciamento de portfólio de serviço - Irá nos apresentar noções, princípios e conceitos para organizar os serviços ao longo de seu ciclo de vida;
+
+Gerenciamento financeiro para serviços de TI - É um processo muito importante, pois é necessário ter orçamento estabelecido, abrir mão de oportunidades, movimentar recursos e tudo isso passa pelo processo;
+
+Gerenciamento de demanda - Análise dos padrões e das necessidades do negócio para que ele possa atender aos padrões e demandas do mercado (não cai na prova);
+
+Gerenciamento de relacionamento de negócio - Nesse processo veremos o executivo de contas, que é o profissional que tem maior contato com o cliente e busca entender as demandas e requisitos desse cliente.
+
+###Desenho de Serviço
+
+Depois de determinada estratégia, chegou a hora de desenhar o serviço - que é designar a forma como a estratégia será posta em prática. Se na estratégia analisamos a demanda, agora iremos desenhar os serviços para atender essa demanda. O desenho de serviço não se limita a desenhar novos serviços, mas também manter os serviços já desenhados, alinhando seus processos com a melhoria contínua. Também é no Desenho de Serviço que serão apresentados princípios e técnicas para transformar a visão estratégica do serviço de TI para ativos e portfólios, criando uma documentação consistente que guarde essas técnicas.
+
+Para que isso ocorra existem alguns Processos:
+
+Coordenação do desenho - Esse processo serve para reunir todos os demais processos da área de Desenho de Serviço;
+
+Gerenciamento de nível de serviço - É onde nós iremos acordar com o cliente o que ele entende como necessário e quais são os níveis de serviço a serem estabelecidos para o negócio;
+
+Gerenciamento do catálogo de serviço - É como um "menu" de restaurante, no qual existe uma lista de todos os serviços prestados pela empresa que poderão ser requisitados pelo cliente em algum momento;
+
+Gerenciamento de Disponibilidade - Está relacionado ao uptime, ou tempo de disponibilidade, é o gerenciamento do nível de disponibilidade dos serviços prestados pela empresa;
+
+Gerenciamento de segurança da informação - É o processo responsável por desenvolver e gerenciar os mecanismos de acesso e proteção das informações da empresa, "quem acessa o quê";
+
+Gerenciamento de fornecedor - Está diretamente relacionado aos parceiros e outros prestadores de serviços para a empresa, negociações, acordos e contratos com fornecedores passam por esse processo;
+
+Gerenciamento da capacidade - Será a definição da capacidade do serviço de estar disponível e com ferramentas que possibilitem sua utilização;
+
+Gerenciamento de continuidade dos serviços de TI - Por fim, o processo do gerenciamento da continuidade busca desenvolver planos de ação para que o serviço mantenha-se disponível em casos de acidentes ou grandes incidentes (blackout, alagamentos, terrorismo...).
+
+

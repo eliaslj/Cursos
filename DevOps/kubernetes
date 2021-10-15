@@ -1,0 +1,347 @@
+Orquestrador de Conteiners
+
+eles gerencia os clusteres 
+master gerenciar o clusteres, manter e atualizar o estado desejado, receber e executar novos comandos
+node executar as aplicações
+Kubectl Consegue criar, ler, atualizar, remover, clusteres das apis tanto declarativo ou imperativo.
+
+API vai fazer a magica de criar pod, rs, deploy, vol
+
+instalando no linux kubectl
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+kubectl version --client
+
+Instalando minikube 
+
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+  && chmod +x minikube
+sudo mkdir -p /usr/local/bin/
+sudo install minikube /usr/local/bin/
+
+instalar o driver do virtual box 
+https://www.virtualbox.org/wiki/Linux_Downloads
+cd Downloads 
+sudo dpkg -i .deb
+voltar pro outro terminal 
+minikube start --vm-driver=virtualbox 
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-kvm2
+chmod +x docker-machine-driver-kvm2
+sudo mv docker-machine-driver-kvm2 /usr/local/bin/
+
+voltar pro outro terminal 
+minikube start --vm-driver=kvm2
+minikube config set vm-driver kvm2
+kubectl get nodes
+
+O Kubernetes possui uma vasta integração com diversas plataformas de nuvem, todas essas informações podem ser acessadas através da documentação oficial: https://kubernetes.io/docs/concepts/cluster-administration/cloud-providers/
+
+POD é uma clasula que pode ter um o mais containers dentro dele , cada containers é criado por uma porta diferente 
+se o containers morrer pod cria um novo containers com a porta diferente do que o q morreu. eles são efemeros 
+Qual grande vantagem de terem o mesmo numero de ip 
+
+kubectl apply -f .\pod-1.yaml criar os Pods
+kubectl get pods mostra os pods
+kubectl describe nomepods
+kubectl get svc mostra os serviços
+kubectl delete -f .\pod-2.yaml 
+kubectl exec -it portal-noticias -- bash
+kubectl get pods -o wide mostrar ips
+kubectl get nodes -o wide
+
+curl ip:porta fazer uma requisição 
+
+
+kubectl run, kubectl describe, kubectl edit
+Executamos o nosso primeiro Pod. Porém, como o Kubernetes armazena as imagens baixadas dentro do cluster?
+A resposta é simples: quando definimos que um Pod será executado, o scheduler definirá em qual Node isso acontecerá. O resultado então é que as imagens quando 
+baixadas de repositórios como o Docker Hub, serão armazenadas localmente em cada Node, não sendo compartilhada por padrão entre todos os membros do cluster.
+
+o validador do site kubeyaml para te auxiliar
+
+SVC-
+Abstrações para expor aplicações executando em um ou mais pods
+Proveem ip's fixos para comunicação, proveem um DNS para um ou mais pods, são capazes de fazer balanceamento de carga
+
+clusteriP fazer a comunicação entre pods
+nodePort abre comunicação para o mundo exerto
+loadBalancerv abre comunicação para o mundo exerto usando o Load balancer do provedor
+
+O que são e para que servem os Services
+Como garantir estabilidade de IP e DNS
+Como criar um Service
+Labels são responsáveis por definir a relação Service x Pod
+Um ClusterIP funciona apenas dentro do cluster
+Um NodePort expõe Pods para dentro e fora do cluster
+Um LoadBalancer também é um NodePort e ClusterIP
+Um LoadBalancer é capaz de automaticamente utilizar um balanceador de carga de um cloud provider
+
+ConfigMaps
+
+Mais informações podem ser adquiridas em https://kubernetes.io/docs/concepts/services-networking/service/#nodeport.
+
+replica set encapsula os Pods, cria um novo Pod , gerencia os pods
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset
+spec:
+  template:
+    metadata:
+      name: nginx-app
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:latest
+  replicas: 6
+  selector:
+    matchLabels:
+      app: nginx-app
+	  
+Deployments é uma camada acima do replica set, controla versionamento da imagem do replica set e controla revisão
+
+kubectl rollout history deployment nginx-deployment 
+kubectl apply -f .\nginx-deployment.yml --record subir alteração do arquivo yaml
+kubectl annotate deployment nome-deployment kubernetes.oi/change-cause="Criando portal de noticias na versão 1" como fosse um commit no git
+kubectl rollout undo deployment nginx-deployment --to-revision-2 fazer um rolles back da alteração que foi realizada
+
+Quando criados, Deployments auxiliam com controle de versionamento e criam um ReplicaSet automaticamente.
+Que ReplicaSets são criados automaticamente dentro de um Deployment
+Que Pods normalmente são criados através de Deployments, e não individualmente.
+
+persitir os dados se um pod seja encerrados for inciado novamente
+
+Um hostPathvolume monta um arquivo ou diretório do sistema de arquivos do nó do host em seu pod. Isso não é algo de que a maioria dos pods precisará,
+mas oferece uma saída de emergência poderosa para alguns aplicativos. Por exemplo, alguns usos de um hostPathsão:
+executando um contêiner que precisa de acesso aos internos do Docker; use um hostPath de/var/lib/docker
+executando o cAdvisor em um contêiner; use um hostPathde/sys
+permitindo que um pod especifique se um determinado hostPathdeve existir antes da execução do pod, se deve ser criado e como deve existir
+Além da pathpropriedade necessária , o usuário pode, opcionalmente, especificar um typepara um hostPathvolume.
+
+kubectl exec -it pod_volume --container nginx-container --bash abrir pasta volume dentro do container que está no Docker
+touch aquivo.txt
+
+Volumes possuem ciclo de vida dependentes de Pods e independentes de containers.
+minikube ssh
+cd /home
+ls
+criar uma pasta dentro desse diretorio mkdir primeiro-volume
+logout
+kubectl exec -it pod_volume --container nginx-container --bash abrir pasta volume dentro do container que está no Docker
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: um-pod-qualquer
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      volumeMounts:
+        - mountPath: /pasta-de-arquivos
+          name: volume-pod
+  volumes:
+    - name: volume-pod
+      hostPath:
+        path: /C/Users/Daniel/Desktop/uma-pasta-no-host
+        type: Directory
+		
+Caso a pasta /C/Users/Daniel/Desktop/uma-pasta-no-host exista no host, um volume chamado volume-pod será criado e montado na pasta pasta-de-arquivos dentro do 
+container do Pod.
+
+Um gcepersistentdiskvolume monta um disco permanente do Google Compute Engine (GCE) em seu pod. Ao contrário emptyDir, que é apagado quando um Pod é removido,
+ o conteúdo de um PD é preservado e o volume é meramente desmontado. Isso significa que um PD pode ser pré-preenchido com dados e que os dados podem ser 
+ "transferidos" entre os pods.
+
+Cuidado: você deve criar um PD usando gclouda API ou IU do GCE antes de usá-lo.
+Existem algumas restrições ao usar gcePersistentDisk:
+
+os nós nos quais os pods estão em execução devem ser VMs do GCE
+essas VMs precisam estar no mesmo projeto GCE e zona que o PD
+Uma característica do PD é que eles podem ser montados como somente leitura por vários consumidores simultaneamente. Isso significa que você pode preencher 
+previamente um PD com seu conjunto de dados e servi-lo em paralelo a partir de quantos Pods forem necessários. Infelizmente, os PDs só podem ser montados por
+ um único consumidor no modo de leitura e gravação - nenhum gravador simultâneo é permitido.
+ 
+ apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: test-volume
+spec:
+  capacity:
+    storage: 400Gi
+  accessModes:
+  - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: my-data-disk
+    fsType: ext4
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: failure-domain.beta.kubernetes.io/zone
+          operator: In
+          values:
+          - us-central1-a
+          - us-central1-b
+		  
+https://kubernetes.io/docs/concepts/storage/volumes/#gcepersistentdisk
+
+É necessário um PersistentVolumeClaim para acessar um PersistentVolume.	  
+PersistentVolumes possuem ciclos de vida independentes de Pods.
+Volumes persistem dados de containers dentro de pods e permitem o compartilhamento de arquivo dentro dos pods
+Que Volumes possuem ciclo de vida independente dos containers, porém, vinculados aos pods
+Como criar PersistentVolumes através de arquivos de definição
+PersistentVolumes persistem dados de pods como um todo
+PersistentVolumes possuem ciclo de vida independente de quaisquer outros recursos, inclusive pods
+Como criar e para que servem os PersistentVolumeClaims
+Que precisamos de um PersistentVolumeClaim para acessar um PersistentVolume
+
+Utilizando Storage Classes
+GCE PD
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: slow
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-standard
+  fstype: ext4
+  replication-type: none
+  
+  
+https://kubernetes.io/docs/concepts/storage/
+
+Storage Classes fornecem dinamismo para criação de PersistentVolumes conforme demanda.
+
+StatefulSets o conteudo do Pod não será perdido ao ser reiniciado
+pod=>pvc=>pv
+StatefulSets usam PersistentVolumes e PersistentVolumeClaims para persistência de dados.
+StatefulSets podem ser usados quando estados devem ser persistidos.
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: um-statefulset-qualquer
+spec:
+  #Restante omitido...
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: dados-persistidos
+              mountPath: /data-info
+      volumes:
+        - name: dados-persistidos
+          persistentVolumeClaim:
+            claimName: dados-pvc
+  #Restante omitido....
+
+Para que funcione da maneira esperada, devemos ter um PersistentVolumeClaim chamado dados-pvc criado.
+
+O que aprendemos nessa aula:
+
+Como criar PersistentVolumes dinamicamente com StorageClasses
+StorageClasses também são capazes de criar discos de armazenamento
+O que é um StatefulSet
+Como utilizar StatefulSets para garantir unicidade de Pods durante reinícios e atualizações
+Clusters possuem StorageClasses "default" e podem ser usados automaticamente se não definirmos qual será utilizado
+
+Conhecendo Liveness Probes,  https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+Tornar visível ao Kubernetes que uma aplicação não está se comportando da maneira esperada.
+
+O kubelet usa sondagens de atividade para saber quando reiniciar um contêiner. Por exemplo, as análises de atividade podem detectar um conflito, em que um 
+aplicativo está em execução, mas não consegue fazer progresso. Reiniciar um contêiner em tal estado pode ajudar a tornar o aplicativo mais disponível, apesar dos bugs.
+
+O kubelet usa sondagens de prontidão para saber quando um contêiner está pronto para começar a aceitar tráfego. Um pod é considerado pronto quando todos 
+os seus contêineres estão prontos. Um uso desse sinal é controlar quais pods são usados ​​como back-ends para serviços. Quando um pod não está pronto, ele 
+é removido dos balanceadores de carga do serviço.
+
+O kubelet usa testes de inicialização para saber quando um aplicativo de contêiner foi iniciado. Se tal teste for configurado, ele desativa as verificações 
+de atividade e prontidão até que tenha sucesso, garantindo que esses testes não interfiram na inicialização do aplicativo. Isso pode ser usado para adotar
+ verificações de atividade em contêineres de inicialização lenta, evitando que sejam eliminados pelo kubelet antes de começarem a funcionar.
+
+Utilizando o HTTP, como um Liveness Probe entende que a aplicação não está respondendo de maneira saudável? Ele indicará falha caso o código de retorno seja menor que 200 ou maior/igual a 400.
+
+Utilizando Readiness Probes
+Há um terceiro tipo de probe voltado para aplicações legadas, o Startup Probe. Algumas aplicações legadas exigem tempo adicional para inicializar na primeira 
+vez. Nem sempre Liveness ou Readiness Probes vão conseguir resolver de maneira simples os problemas de inicialização de aplicações legadas. Mais informações
+sobre Startup Probes podem ser adquiridas por https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-startup-probes
+ 
+O Kubernetes nem sempre tem como saber se a aplicação está saudável
+Podemos criar critérios para definir se a aplicação está saudável através de probes
+Como criar Liveness probes com o campo livenessProbe
+LivenessProbes podem fazer a verificação em diferentes intervalos de tempo via HTTP
+Como criar Liveness probes com o campo ReadinessProbe
+ReadinessProbes podem fazer a verificação em diferentes intervalos de tempo via HTTP
+LivenessProbes são para saber se a aplicação está saudável e/ou se deve ser reiniciada, enquanto ReadinessProbes são para saber se a aplicação já está pronta para receber requisições depois de iniciar
+Além do HTTP, também podemos fazer verificações via TCP
+
+Escalando pods automaticamente
+Horizontal Pod Autoscaler
+O horizontal Pod Autoscaler dimensiona automaticamente o número de pods em um controlador de replicação, implantação, conjunto de réplicas ou conjunto com
+ estado com base na utilização de CPU observada (ou, com suporte a métricas personalizadas , em algumas outras métricas fornecidas pelo aplicativo). 
+ Observe que o escalonamento automático horizontal de pod não se aplica a objetos que não podem ser escalados, por exemplo, DaemonSets.
+
+O horizontal pod Autoscaler é implementado como um recurso da API Kubernetes e um controlador. O recurso determina o comportamento do controlador.
+ O controlador ajusta periodicamente o número de réplicas em um controlador de replicação ou implementação para corresponder à utilização média da
+ CPU observada ao destino especificado pelo usuário
+
+habilitar metrics-server no linux 
+minikube addons list
+minikube addons enable metrics-server
+
+arquivo teste de stress no linux stress.sh
+for i in {1..10000}; do
+curl 192.168.99.100:30000
+sleep $1
+done
+
+kubectl get nodes -o wide trazer informações do ip que onde pod foi criado e alterar no arquivo de Stress
+bash stress.sh 0.001 > out.txt para executar o script de stress
+
+kubectl get hpa --watch ver informações do consumo de recursos
+
+Além do HorizontalPodAutoscaler, o Kubernetes possui um recurso customizado chamado VerticalPodAutoscaler. O VerticalPodAutoscaler remove a necessidade de definir limites e pedidos por recursos do sistema, como cpu e memória. Quando definido, ele define os consumos de maneira automática baseada na utilização em cada um dos nós, além disso, quanto tem disponível ainda de recurso.
+
+Algumas configurações extras são necessárias para utilizar o VerticalPodAutoscaler. Mais informações podem ser obtidas nesse link.https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler
+
+Também podemos ver mais informações específicas sobre diferentes Cloud Providers, como o GCP e a AWS. https://cloud.google.com/kubernetes-engine/docs/concepts/verticalpodautoscaler   https://docs.aws.amazon.com/eks/latest/userguide/vertical-pod-autoscaler.html
+
+O que aprendemos nessa aula:
+
+Reiniciar a aplicação incessantemente através de ReplicaSets/Deployments nem sempre resolverá o problema
+HorizontalPodAutoscalers são responsáveis por definir em quais circunstâncias escalaremos nossa aplicação automaticamente
+Como definir o uso de recursos de cada container em um Pod
+O que é, e como utilizar um servidor de métricas
+Como utilizar um HorizontalPodAutoscaler através de arquivos de definição
+
+Quais são os tipos de armazenamentos no Docker?
+O Docker é a container engine mais popular e se tornou muito famoso para executar processos isoladamente. Através dele podemos instalar e executar software sem "sujar" o sistema por baixo, criar redes, mapear volumes e muito mais.
+
+
+HELM Para k8s
+app.yaml descrição dos objetos que 
+servico.yaml  configuração de serviço
+ingress.yaml  pacotes de serviços de entradas
+configMap.yaml configuração de todas aplicações, endereço banco de dados
+secret.yml é um configmap encripitado
+
+chart é pacote componente do HELM -> v1
+
+
+
+
+
+
+
+

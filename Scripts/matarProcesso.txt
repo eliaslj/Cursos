@@ -1,0 +1,2 @@
+netstat -a -n -o | findstr 8080
+Taskkill /PID 3712 /F

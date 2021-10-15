@@ -1,0 +1,245 @@
+O que aprendemos nessa aula:
+#Injection
+o que é injeção
+onde ela pode ocorrer
+como corrigir
+Prevenir a injeção requer manter os dados separados dos
+comandos e consultas.
+• A opção preferencial é usar uma API segura, o que evita o uso
+do intérprete inteiramente ou fornece uma interface parametrizada,
+ou migre para usar Object Relational Mapping Tools (ORMs).
+Nota: Mesmo quando parametrizados, os procedimentos armazenados ainda podem
+introduzir injeção de SQL se PL / SQL ou T-SQL concatenar
+consulta e dados, ou executa dados hostis com EXECUTE
+IMEDIATA ou exec ().
+• Use validação de entrada positiva ou "whitelist" do lado do servidor. Isso é
+não é uma defesa completa, pois muitos aplicativos exigem
+caracteres, como áreas de texto ou APIs para aplicativos móveis.
+• Para quaisquer consultas dinâmicas residuais, use caracteres especiais de escape
+usando a sintaxe de escape específica para esse interpretador.
+Nota: estrutura SQL, como nomes de tabelas, nomes de colunas e
+assim por diante não pode ser escapado e, portanto, estrutura fornecida pelo usuário
+nomes são perigosos. Este é um problema comum na redação de relatórios
+Programas.
+• Use LIMIT e outros controles SQL nas consultas para prevenir
+divulgação em massa de registros em caso de injeção de SQL.
+
+
+#Broken Authentication
+O que aprendemos nessa aula:
+
+o problema da força bruta
+o problema de senhas comuns
+credential stuffing
+o que você tem, quem você é, o que você sabe
+a importância da criptografia
+multi factor
+session ids
+diversas ideias de como prevenir
+
+• Sempre que possível, implemente a autenticação multifator para
+evitar automatizado, enchimento de credenciais, força bruta e roubado
+ataques de reutilização de credenciais.
+• Não envie ou implante com quaisquer credenciais padrão, particularmente
+para usuários admin.
+• Implementar verificações de senha fraca, como testar novos ou
+alterou as senhas em relação a uma lista dos 10000 piores
+senhas.
+• Alinhe o comprimento da senha, complexidade e políticas de rotação com
+Diretrizes do NIST 800-63 B na seção 5.1.1 para memorizados
+Segredos ou outras políticas de senha modernas baseadas em evidências.
+• Certifique-se de que o registro, a recuperação de credenciais e os caminhos de API sejam
+reforçado contra ataques de enumeração de contas usando o
+mesmas mensagens para todos os resultados.
+• Limite ou atrase cada vez mais as tentativas de login malsucedidas. Registrar todas as falhas
+e alertar os administradores quando o enchimento de credenciais, força bruta ou
+outros ataques são detectados.
+• Use um gerenciador de sessão integrado, seguro e do lado do servidor que
+gera um novo ID de sessão aleatório com alta entropia após
+Conecte-se. Os IDs de sessão não devem estar no URL, devem ser armazenados com segurança
+e invalidado após logout, tempo limite inativo e absoluto.
+
+
+#Sensitive Data Exposure
+
+O que aprendemos nessa aula:
+
+Dados não criptografados armazenados
+Dados não criptografados em trânsito
+O perigo de logs e backups
+Atualização de algoritmos de criptografia
+Forçar o uso de certificados e a validação dos mesmos
+
+Faça o seguinte, no mínimo, e consulte as referências:
+• Classificar dados processados, armazenados ou transmitidos por um
+aplicativo. Identifique quais dados são confidenciais de acordo com a privacidade
+leis, requisitos regulamentares ou necessidades de negócios.
+• Aplicar controles de acordo com a classificação.
+• Não armazene dados confidenciais desnecessariamente. Descarte assim que
+possível ou usar tokenização compatível com PCI DSS ou mesmo
+truncamento. Os dados que não são retidos não podem ser roubados.
+• Certifique-se de criptografar todos os dados confidenciais em repouso.
+• Garantir algoritmos e protocolos de padrão forte e atualizados,
+e as chaves estão no lugar; use o gerenciamento de chaves adequado.
+• Criptografar todos os dados em trânsito com protocolos seguros, como TLS
+com cifras de sigilo de encaminhamento perfeito (PFS), priorização de cifras
+pelo servidor e parâmetros seguros. Aplicar criptografia
+usando diretivas como HTTP Strict Transport Security (HSTS).
+• Desative o armazenamento em cache para respostas que contenham dados confidenciais.
+• Armazene as senhas usando hashing adaptativo forte e salgado
+funções com um fator de trabalho (fator de atraso), como Argon2,
+scrypt, bcrypt ou PBKDF2.
+• Verifique de forma independente a eficácia da configuração e
+definições
+
+
+#XML External Entities (XXE)
+
+O que aprendemos nessa aula:
+
+O que são XML External Entities?
+O problema de entidades externas
+
+O treinamento do desenvolvedor é essencial para identificar e mitigar XXE.
+Além disso, a prevenção de XXE requer:
+• Sempre que possível, use formatos de dados menos complexos, como
+JSON e evitando a serialização de dados confidenciais.
+• Corrigir ou atualizar todos os processadores e bibliotecas XML em uso por
+no aplicativo ou no sistema operacional subjacente. Usar
+verificadores de dependência. Atualize o SOAP para SOAP 1.2 ou superior.
+• Desative a entidade externa XML e o processamento de DTD em todos os XML
+analisadores no aplicativo, de acordo com o OWASP Cheat Sheet
+'Prevenção XXE'.
+• Implementar validação de entrada positiva ("lista de permissões") do lado do servidor,
+filtragem ou sanitização para evitar dados hostis em XML
+documentos, cabeçalhos ou nós.
+• Verifique se a funcionalidade de upload de arquivo XML ou XSL valida
+XML de entrada usando validação XSD ou similar.
+• As ferramentas SAST podem ajudar a detectar XXE no código-fonte, embora
+a revisão manual do código é a melhor alternativa em grandes e complexas
+aplicativos com muitas integrações.
+Se esses controles não forem possíveis, considere o uso de
+patching, gateways de segurança de API ou firewalls de aplicativos da Web
+(WAFs) para detectar, monitorar e bloquear ataques XXE.
+
+
+
+#Broken Access Control
+O que aprendemos nessa aula:
+
+controle explícito e implícito
+perigo em modificação de URIs
+não permitir trocas de chaves primárias e controlar chaves estrangeiras
+
+O controle de acesso impõe políticas de tal forma que os usuários não podem agir
+fora das permissões pretendidas. As falhas normalmente levam a
+divulgação, modificação ou destruição de informações não autorizadas
+de todos os dados, ou desempenhando uma função de negócios fora dos limites
+do usuário. Vulnerabilidades comuns de controle de acesso incluem:
+• Ignorando as verificações de controle de acesso, modificando a URL,
+estado interno do aplicativo, ou a página HTML, ou simplesmente usando um
+ferramenta de ataque de API personalizada.
+• Permitir que a chave primária seja alterada para outros usuários
+registro, permitindo a visualização ou edição da conta de outra pessoa.
+• Elevação de privilégio. Agindo como um usuário sem estar logado,
+ou agindo como um administrador quando conectado como um usuário.
+• Manipulação de metadados, como reproduzir ou adulterar um
+Token de controle de acesso JSON Web Token (JWT) ou um cookie ou
+campo oculto manipulado para elevar privilégios ou abusar do JWT
+invalidação
+• A configuração incorreta do CORS permite acesso não autorizado à API.
+• Força a navegação para páginas autenticadas como não autenticadas
+usuário ou para páginas privilegiadas como um usuário padrão. Acessando API
+sem controles de acesso para POST, PUT e DELETE.
+
+
+O controle de acesso só é eficaz se for aplicado no lado do servidor confiável
+código ou API sem servidor, onde o invasor não pode modificar o
+verificação de controle de acesso ou metadados.
+• Com exceção de recursos públicos, negar por padrão.
+• Implementar mecanismos de controle de acesso uma vez e reutilizá-los
+em todo o aplicativo, incluindo a minimização do uso de CORS.
+• Os controles de acesso do modelo devem impor a propriedade do registro, em vez disso
+do que aceitar que o usuário pode criar, ler, atualizar ou excluir
+qualquer registro.
+• Os requisitos de limite de negócios de aplicativos exclusivos devem ser
+aplicada por modelos de domínio.
+• Desative a lista de diretórios do servidor web e garanta os metadados do arquivo
+(por exemplo, .git) e os arquivos de backup não estão presentes nas raízes da web.
+• Registrar falhas de controle de acesso, alertar os administradores quando apropriado
+(por exemplo, falhas repetidas).
+• Limite de taxa de API e acesso de controlador para minimizar os danos de
+ferramentas de ataque automatizadas.
+• Os tokens JWT devem ser invalidados no servidor após o logout.
+Os desenvolvedores e a equipe de QA devem incluir controle de acesso funcional
+testes de unidade e integração.
+
+###############################################################################################
+Security Misconfiguration - Configuração incorreta de segurança
+
+O aplicativo é vulnerável?
+O aplicativo pode ser vulnerável se for:
+•
+Falta de proteção de segurança adequada em qualquer parte do
+pilha de aplicativos ou permissões configuradas incorretamente em
+serviços na nuvem.
+•
+Recursos desnecessários são ativados ou instalados (por exemplo,
+portas, serviços, páginas, contas ou privilégios desnecessários).
+•
+Contas padrão e suas senhas ainda ativadas e
+inalterado.
+•
+O tratamento de erros revela rastreamentos de pilha ou outros excessivamente informativos
+mensagens de erro para os usuários.
+•
+Para sistemas atualizados, os recursos de segurança mais recentes estão desativados ou
+não está configurado com segurança.
+•
+As configurações de segurança nos servidores de aplicativos, aplicativos
+estruturas (por exemplo, Struts, Spring, ASP.NET), bibliotecas,
+bancos de dados, etc. não definidos para valores seguros.
+•
+O servidor não envia cabeçalhos ou diretivas de segurança ou eles
+não estão configurados para proteger valores.
+•
+O software está desatualizado ou vulnerável (ver A9: 2017 Usando
+Componentes com vulnerabilidades conhecidas
+Sem uma segurança de aplicativo combinada e repetível
+processo de configuração, os sistemas correm um risco maior.
+
+##Como prevenir
+Devem ser implementados processos de instalação segura, incluindo:
+•
+Um processo de endurecimento repetível que o torna rápido e fácil de
+implantar outro ambiente devidamente bloqueado.
+Ambientes de desenvolvimento, controle de qualidade e produção devem ser todos
+configurado de forma idêntica, com diferentes credenciais usadas em cada
+meio Ambiente. Este processo deve ser automatizado para minimizar
+o esforço necessário para configurar um novo ambiente seguro.
+•
+Uma plataforma mínima sem recursos desnecessários,
+componentes, documentação e amostras. Remova ou não
+instalar recursos e estruturas não utilizados.
+•
+Uma tarefa para revisar e atualizar as configurações apropriadas para
+todas as notas de segurança, atualizações e patches como parte do patch
+processo de gerenciamento (ver A9: 2017 usando componentes com
+Vulnerabilidades conhecidas). Em particular, analise o armazenamento em nuvem
+permissões (por exemplo, permissões de bucket S3).
+•
+Uma arquitetura de aplicativo segmentada que fornece
+separação segura entre componentes ou locatários, com
+segmentação, conteinerização ou grupos de segurança em nuvem.
+•
+Envio de diretivas de segurança para clientes, por ex. Cabeçalhos de Segurança
+•
+Um processo automatizado para verificar a eficácia do
+configurações e configurações em todos os ambientes.
+
+
+
+
+
+
+

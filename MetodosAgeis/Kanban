@@ -1,0 +1,357 @@
+A História do Kanban
+
+Taiichi Ohno, um dos criadores do Sistema de Produção Toyota, “os dois pilares do Sistema de Produção Toyota são just-in-time e automação com um toque humano, ou autonomação. A ferramenta usada para operar o sistema é kanban”. Em outras palavras, kanban é fundamental para o processo de kaizen (“melhoria contínua”) usado na Toyota. É o mecanismo que faz com que ele funcione.
+
+A diferença entre os "kanban's"
+
+kanban - Palavra japonesa para cartão de sinal, Kanji, são as sílabas japonesas, são dois kanjis, o Kan ban.
+
+Sistema kanban - refere-se ao sistema puxado implementado com cartões sinalizadores.
+
+Método Kanban - David Anderson - é usado para se referir à metodologia de melhoria de processo incremental e evolutiva que surgiu na Corbis de 2006 a 2008 e continuou a evoluir na ampla comunidade de desenvolvimento Lean de software nos anos seguintes.
+
+Relação entre Lean, Kanban e Modelos Ágeis
+
+Kanban faz parte do pensamento Lean mas não é um Modelo Ágil.
+
+O que é um sistema puxado?
+
+Do inglês “pull system”, a produção puxada controla as operações fabris sem a utilização de estoque em processo. Neste modelo, diferentemente da produção empurrada, o fluxo de materiais ganha relevante importância. Dá-se com a utilização do Sistema Kanban.
+
+Diferenças do Kanban de outros modelos ágeis
+
+O principal limite é o WIP que indica quando o trabalho pode andar
+
+É mais aberto quanto a adaptação, quanto mais o time aprende mais pode adaptar o quadro a sua realidade.
+
+Vantagens de usar o Kanban
+
+Fluxo contínuo, melhor agilidade
+Mudança evolutiva, menor resistência
+Melhor previsibilidade, controle das variáveis, ritmo contínuo
+Melhor gerenciamento de risco
+Dicas de como começar a usar o Kanban
+
+Comece de onde você está
+Concorde em melhorar incrementalmente
+Encoraje atos de liderança e inicialmente respeite papéis, responsabilidades e descrição de cargos.
+
+
+Em nossa 2ª aula aprendemos:
+
+Como visualizar o trabalho na forma de fluxo, considerando as seguintes dicas:
+
+Reunindo o time e pedindo para que todos listem em post-its em que estão trabalhando atualmente.
+
+Opcionalmente os itens podem depois ser priorizados em uma coluna.
+
+Entendemos os desafios de uso das ferramentas eletrônicas neste acompanhamento do Kanban, pois a informação não está acessível a todos em tempo real, além de gerar a demanda de que todos dominem o uso de um software para aplicar o Kanban
+
+Observamos o conceito de information refrigerator e information radiator.
+
+Identificamos as vantagens de visualizar o trabalho, para:
+
+Fazer o trabalho que está “escondido” aparecer
+
+Tornar o trabalho visível faz com que a informação esteja disponível para todos os interessados
+
+Auxiliar ao time a ver: Quem está fazendo o que, e a quantidade de trabalho em que o time está envolvido
+
+Apresentamos dicas e principais vantagens de mapear o fluxo de trabalho
+
+Começar organizando o trabalho em colunas por onde o trabalho começa
+
+O nome das colunas pode ser alterado depois
+
+O melhor modelo é o criado pelo time
+
+Trabalho pronto é o que gera valor para o cliente
+
+O Kanban expõe os problemas no processo
+
+O primeiro quadro não é final, é só o melhor possível
+
+Identificar todos os estágios do trabalho, do início até o trabalho deixar o time
+
+Não busque a perfeição, inspecione e adapte o trabalho tendo como premissa que ele não pode ser considerado completo enquanto não estiver entregando valor para o cliente
+
+Observamos que por meio do mapeamento visual do fluxo de trabalho, você vê: o status do trabalho, e os potenciais problemas como trabalho não progredindo e acumulando em um estágio
+
+Visualizamos como são e como fazer cartões do quadro Kanban
+
+Neste aspecto destacamos que o quadro precisa ser compreendido pelo time
+
+Entendemos que os cartões servem para mostrar status dos trabalhos e apresentam os seguintes atributos comuns nos quadros de Kanban:
+
+Descrição do item de trabalho
+
+ID do sistema eletrônico
+
+Prazos e datas
+
+Quem está trabalhando naquele cartão através de avatar
+
+Tipo de trabalho (bug ou normal, por exemplo) Bugs muitas vezes diferenciados por cor
+
+
+Em nossa 3ª aula, aprendemos:
+
+WIP ( Work in Progress), sobre várias dicas, tais como:
+
+Pare de começar e comece a terminar!
+
+Trabalhar em menos itens entrega valor mais rápido
+
+O WIP Pode ser definido inicialmente por número de pessoas em cada atividade
+
+O time é a melhor fonte para definir seu limite de WIP
+
+Podemos criar uma Coluna de “buffer” - para atividades que envolvem apenas uma aprovação por exemplo
+
+Limitar o WIP (work in progress) vai mostrar oportunidades de melhoria
+
+Agir sobre estas oportunidades vai melhor o fluxo do trabalho
+
+Não existe um WIP “correto” para um time
+
+Em termos de limites de WIP, observamos que: limites muito ALTOS deixam o trabalho parado, já os limites muito BAIXOS deixam as pessoas paradas sem trabalho.
+
+Como lidar com itens urgentes, considerando que:
+
+O time cria uma política para definir o que é urgente
+
+A urgência é criada no quadro e é tratada como uma raia separada
+
+A importância de lembrarmos que a linha de itens de urgência criada mostra o impacto no fluxo de trabalho aumentando o WIP.
+
+Realmente estamos descobrindo que não existem "mistérios" na implementação do Kanban e o que é melhor estamos juntos identificando como fazer esta implementação de maneira simples e eficiente na medida que vamos avançando no conteúdo do curso. Até nossa próxima aula onde abordaremos as métricas do Kanban!
+
+
+Em nossa 4ª aula, aprendemos:
+
+Quais são e principais conceitos das 3 principais métricas do Kanban, a saber:
+Lead time – o tempo para todo o fluxo do trabalho
+
+Cycle time – o tempo que o trabalho demora para passar por parte do fluxo.
+
+Throughtput – quantos itens o time completa em um período de tempo, pode ser chamado de vazão.
+
+Vimos que as métricas existem para ajudar o time a melhorar
+
+É recomendável que se deixe o time escolher as suas próprias métricas.
+
+Não devemos usar as métricas do Kanban para avaliação de performance da equipe.
+
+Destacamos a importância dos cartões conterem as datas para ser possível extrair as métricas desejadas.
+
+Sugerimos que na dúvida de qual métrica usar como ponto de análise inicial usar a Lead time, porque é o tempo que a sua entrega leva para gerar valor para seu cliente
+
+Vimos também que as métricas devem ser escolhidas pela realidade de cada time.
+
+Elas ajudam o time a começar a ver a média dos seus resultados, a fazer previsões e planejar prazos de entrega.
+
+Na questão da urgência vimos que é importante sempre monitorar no fluxo de trabalho do quadro Kanban o que é urgente tendo em vista que isso impacta o resultado como um todo da entrega.
+
+Veja a ilustração da comparação (em inglês) entre o quadro Kanban e o quadro Scrum
+
+############################################################################################################################
+https://realtimeboard.com/blog/scrum-kanban-boards-differences/
+
+Deixarmos as políticas explícitas com foco em buscar a melhoria contínua e colaborativa;
+
+Realização de reuniões periódicas de melhoria baseadas no quadro Kanban, onde o time decide sua frequência. O importante é que ela seja focada nos post-its, não nas pessoas, e que os post-its sejam trabalhados priorizados da direita para a esquerda, o que possibilitará o término de alguns trabalhos antes de se iniciarem outros;
+
+Vimos o quão relevante é nos certificarmos que todo o time entende no que trabalha;
+
+Destacamos também que o Kanban não faz mágica, quem faz a mágica é o time. Na verdade, o Kanban expõe os problemas no processo. Neste contexto, cabe ao time abordar os problemas para poder obter os benefícios do Kanban e com isto obter a verdadeira magia que é o time sempre estar se auto ajustando para poder estar continuamente melhorando;
+
+A adoção do Kanban é um investimento de longo prazo em capacidade, maturidade e cultura da sua organização.Não se destina a uma solução rápida!
+
+Observamos que a focar no que “cheira mal” e nos desvios;
+
+Estudamos os erros mais comuns no quadro Kanban que são:
+
+a- Andar contra o sentido do fluxo.
+
+b- Ter uma coluna para “on hold” ou espera.
+
+c- Não ter limite ou não respeitar o WIP.
+
+d- Não mapear todos os itens de trabalho ou o post-it “fantasma”
+
+e- Não usar métricas de forma consistente ou relevante.
+
+f- Não deixar a métrica ser imposta, o time precisa estar envolvido na decisão!
+
+g- Punir o time caso o resultado piore, premiar caso o resultado melhore
+
+Assim, concluímos a apresentação do conteúdo previsto neste curso, cujo o objetivo principal é de te introduzir aos primeiros passos de uso do Kanban, esperamos que você tenha aproveitado ao máximo o conteúdo apresentado!
+
+######################################################################################################################
+Um pouco mais sobre o Kanban
+O Kanban é um método visual que retrata o panorama de funcionamento da organização e, ao mesmo tempo, dá instruções para produção ou retirada de itens em um sistema puxado. Kanban expõe gargalos e filas, portanto, tudo que impacta na performance da organização em termos de quantidade de trabalho, de valor entregue e tempo de ciclo de entregas. Os benefícios da aplicação da metodologia Kanban são: fácil implementação, cria engajamento nas pessoas para melhorar o processo e resultados rápidos. Continuando nossa jornada no framework de Kanban, estudaremos as Métricas e seus conceitos associados. O principal motivo de se estudar Teoria de Filas é otimizar o sistema, que se caracteriza por:
+
+Melhor utilização dos serviços disponíveis,
+
+Menor tempo de espera,
+
+Maior rapidez no atendimento.
+
+Lembre-se: um sistema de filas pode ser descrito como clientes que chegam para um determinado serviço em que são atendidos imediatamente ou esperam, saindo após o atendimento.
+
+Para compor o nosso conhecimento e nos ajudar a enriquecer e extrair os melhores resultados, utilizam-se as Métricas.
+
+Elas podem ser entendidas juntas com a Lei de Little e suas respectivas variáveis, as quais nos servem para analisar e pensar nos seguintes aspectos:
+
+Movimentação (pare de começar e comece a terminar);
+
+Folga;
+
+Não crie coisas que ninguém quer agora;
+
+Variabilidade;
+
+Redução do tempo entre criação e correção (mais rápido e relação causa-efeito);
+
+Após apuração das nossas Métricas, traça-se o Gráfico de CFD. Este gráfico gera uma melhor visualização e compreensão do desempenho da equipe ao longo do tempo e ajuda a prever resultados futuros (previsibilidade). Portanto, o CFD é um instrumento valioso. Ao usá-lo, você pode verificar rapidamente as seguintes questões:
+
+Quanto trabalho foi feito?
+
+O que está em andamento?
+
+Quanto tempo será necessário para que determinado escopo seja concluído?
+
+###########################################################################################################################
+Nesta nossa 1ª aula vimos que:
+
+Para trabalhar com as Métricas, tenha em mente estes tópicos:
+
+O que está sendo feito
+
+Classifique o que precisa ser feito
+
+O que está em espera
+
+As características das boas Métricas são:
+
+Alinhadas ao propósito
+
+Sistêmicas
+
+Medem os trabalhos não trabalhadores
+
+Não esqueça: Consideram que o trabalho está sujeito a variações.
+
+Nos vemos na próxima aula onde daremos continuidade ao nosso curso tratando do tema central de Melhoria Contínua.
+
+Vamos adiante?
+
+####################################################################################################################
+
+Um pouco mais sobre Melhoria Contínua
+O conceito tem de fato sua origem no meio industrial. Surgiu após a Segunda Guerra Mundial, quando várias empresas japonesas passaram a aplicar práticas que depois foram englobadas pelo termo. Desde então, os princípios do Kaizen se espalharam por todo o mundo, e hoje são utilizados em diversas outras áreas que não apenas a de produtividade.
+
+Um dos grandes responsáveis por este movimento é o professor Masaaki Imai. Considerado o pai do Kaizen, é autor de um livro fundamental para o assunto – “Kaizen – The secret to Japans competitive success” e fundador do Kaizen Institute, por meio do qual leva os ensinamentos e as práticas em questão para todo o mundo.
+
+No contexto de uma empresa, as práticas de Kaizen trazem aquilo que todo empreendedor procura: redução de custos e aumento de produtividade. De acordo com os ensinamentos do professor Masaaki, isso ocorre a partir do pressuposto que as pessoas podem melhorar continuamente no desenvolvimento de suas atividades.
+
+Ele professa que o trabalho coletivo deve prevalecer sobre o individual; que o ser humano é visto como um dos bens mais valiosos de uma organização, e que deve ser incentivado a direcionar seu trabalho para as metas compartilhadas da empresa, sem que deixe de atender às suas necessidades pessoais. No Kaizen, satisfação e responsabilidade são valores coletivos.
+
+
+###################################################################################################################
+Em nossa 2ª aula, vimos que:
+
+Kaizen: É uma palavra de origem japonesa que significa mudança para melhor.
+
+Kaikaku: É aplicado sobre as mudanças fundamentais e radicais para um sistema de produção.
+
+Ciclo Kaizen e Melhoria Contínua tem foco em:
+
+Eliminação de desperdícios;
+
+Orientação à processos;
+
+Dados e fatos;
+
+Atenção deve estar no local onde o valor é criado;
+
+Trabalho em equipe;
+
+Realizar ações para conter e corrigir as causas bases dos problemas.
+
+#################################################################################################################
+
+Mais um pouco sobre Lean Kanban
+Systems thinking, como definido por Peter Senge em seu livro “A Quinta Disciplina”, é uma maneira de analisar padrões na organização sob um ponto de vista amplo, ao invés de olhar isoladamente para uma pequena parte. Senge usa um elefante como metáfora para explicar o pensamento sistêmico: Se você dividir um elefante em dois, não terá dois elefantinhos. Não tem como olhar somente para uma parte do elefante, se quiser aprender a lidar com ele. Uma organização, assim como um elefante, é um organismo vivo, e deve ser, portanto, gerenciado sob um olhar integral ao invés de partes isoladas.
+
+É muito fácil se deixar seduzir pelo passo-a-passo do STATIK e deixar o pensamento sistêmico de lado. Seguir uma receita de bolo (ou os 8 passos simples do STATIK) não é suficiente para garantir que você vai ter um bolo (ou um sistema Kanban) quando chegar ao final. Muito menos que o resultado desta receita vai matar a sua fome (ou os problemas que você quer resolver com o Kanban).
+
+Mesmo com 8 passos explícitos, o STATIK é um método iterativo, e não requer que todos os passos sejam utilizados em sua aplicação. Muito menos que sejam feitos em ordem. É importante lembrar que o ambiente no qual você está provavelmente é complexo e não existe receita para resolver os seus problemas. Mas existem boas práticas, que podem te ajudar.
+
+##################################################################################################################
+
+Em nossa 3ª aula, vimos que:
+
+Lean-Kanban nos remeta as seguintes reflexões:
+
+Mudança evolucionária é mais fácil de ser incorporada no cotidiano das pessoas.
+
+Potencialize as melhorias por meio da utilização do Kanban e seu quadro visual.
+
+Resistência das pessoas envolvidas é sempre emocional.
+
+Como o fluxo de água ao redor das pedras, nós devemos aprender como evitar resistências emocionais.
+
+#################################################################################################################
+
+Mais sobre o Proto-Kanban
+O Proto-Kanban foi um termo cunhado primeiramente pelo acadêmico Richard Turner, Professor do Stevens Institute of Technology. Richard e David J. Anderson estavam discutindo o CMMI e sua aplicação ao Kanban. O termo Proto-Kanban veio da observação de que esses sistemas Kanban incompletos são frequentemente precursores evolutivos de um genuíno sistema puxados limitado por WIP.
+
+Os sistemas Proto-Kanban podem trazer grandes benefícios para as organizações como por exemplo: para tornar visível o trabalho intangível. Mas não devem ser vistos como pontos finais nas transformações de processo.
+
+Fonte: http://leankanban.com/guide/
+
+################################################################################################################
+
+Em nossa 4ª aula, vimos que:
+
+O Proto-Kanban é um sistema de fluxo ou processo em que o Método Kanban está sendo aplicado, mas que ainda não apresenta características de um sistema maduro.
+
+Existem 5 Tipos de Proto-Kanban:
+
+Kanban Pessoal ou Agregado Pessoal (no escritório)
+
+Equipe Kanban
+
+Limite WIP por pessoa - Esta prática pode ser aplicada a várias formas
+
+Cadências Desacopladas
+
+Equipe Agregada Kanban
+
+###############################################################################################################
+
+Mais de Cadências
+Escolher a cadência certa depende do contexto e é crucial para bons resultados. Revisões muito frequentes podem forçar mudanças antes de ver o efeito de alterações anteriores, mas se elas não forem freqüentes o suficiente, um desempenho ruim pode persistir por mais tempo do que o necessário.
+
+Fonte: http://leankanban.com/guide/
+
+##############################################################################################################
+
+Em nossa 5ª e última aula deste curso vimos que:
+
+As Cadências auxiliam a realização de loops de feedback nas áreas de processos são uma parte essencial de qualquer processo controlado e são especialmente importantes para a mudança evolutiva.
+
+Recapitulamos alguns temas centrais abordados ao longo de nosso curso:
+
+Métricas
+
+Melhoria Contínua
+
+Introdução ao Lean-Kanban
+
+Diferentes tipos de Kanban
+
+Cadências do Kanban
+
+###########################################################################################################
