@@ -1,0 +1,238 @@
+O Vagrant entra como leitor e controlador do Hypervisor na linha de comando ao definir no arquivo de texto quais ferramentas e metodologias pretendemos utilizar para que o projeto funcione. Ou seja, definimos a infraestrutura do código através deste recurso.
+
+vagrant ssh
+
+No Vagrantfile, vamos definir o sistema operacional, a rede, memória, entre outras configurações
+
+Um Hypervisor, também conhecido como monitor de máquina virtual, é um processo que cria e executa máquinas virtuais (VMs). Um Hypervisor permite que um computador host suporte múltiplas VMs, compartilhando virtualmente seus recursos, como memória e processamento.
+
+Exemplos de Hypervisors são:
+
+Hyper-V
+vSphere
+Parallels
+VMware
+Virtualbox
+entre outros.
+Existem dois tipos de Hypervisors: Tipo 1 e Tipo 2.
+
+Os Hypervisors do Tipo 1 são chamados de "bare metal", pois são executados diretamente no hardware do host. Exemplos disso são Hyper-V e vSphere (entre vários outros).
+
+Os Hypervisors do Tipo 2 rodam como uma aplicação em cima do sistema operacional. Exemplos são o VirtualBox e VMware.
+
+O guest é a máquina virtual, host é o sistema que roda o provider/hypervisor
+
+Na pasta do projeto, crie uma nova pasta, com o nome bionic
+Dentro da pasta bionic, gere um novo Vagrantfile:
+vagrant init ubuntu/bionic64COPIAR CÓDIGO
+Configure o port-forwarding da porta 8089 do host, para a 80 do guest
+Conecte-se e instale o pacote nginx na máquina virtual:
+apt-get install -y nginxCOPIAR CÓDIGO
+No host, use o navegador para testar o port-forwarding: http://localhost:8089
+Teste também o private-network, e se puder, o public-network
+Segue uma possível configuração do Vagrantfile:
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.network "forwarded_port", guest: 80, host: 8089
+  config.vm.network "public_network", ip: "192.168.1.24
+  end
+  
+  Existem 3 formas para configurar a rede:
+Forwarded Port
+Private Network
+Public Network
+Na configuração Forwarded Port, mapeamos uma porta do host para o guest, por exemplo:
+config.vm.network "forwarded_port", guest: 80, host: 8080,COPIAR CÓDIGO
+Na Private Network (static ou dhcp) é usado um endereço privado que não é acessível na sua rede pública (por exemplo, a rede empresarial)
+Na Public Network (static ou dhcp), usamos um endereço que faz parte da sua rede pública (por exemplo, da rede empresarial)
+Com o comando vagrant halt podemos parar a execução da máquina virtual
+O comando vagrant reload recarrega a configuração da máquina virtual
+
+Nesta aula, aprendemos que:
+
+O comando vagrant ssh-config lista as configurações SSH que o comando vagrant ssh usará
+O Vagrant gera automaticamente um par de chaves SSH
+A chave pública fica na máquina virtual (guest), a chave privada fica no host
+No arquivo .ssh/known_host, fica guardado o fingerprint de cada máquina com qual o SSH se conectou
+Como criamos máquinas através do Vagrant com frequência, é preciso limpar esse arquivo .ssh/known_host (ou apagar) de tempos e tempos
+Para gerar um par de chaves SSH, existe a ferramenta ssh-keygen
+A chave pública deve ficar dentro do arquivo .ssh/authorized_keys da máquina virtual
+
+
+Dentro do Vagrantfile, defina um script que instala o MySQL 5.7 e cria um usuário:
+$script_mysql = <<-SCRIPT
+apt-get update && \
+apt-get install -y mysql-server-5.7 && \
+mysql -e "create user 'phpuser'@'%' identified by 'pass';"
+SCRIPTCOPIAR CÓDIGO
+Chame o script através do shell provisioner:
+config.vm.provision "shell", inline: $script_mysqlCOPIAR CÓDIGO
+Redefina o arquivo de configuração do MySQL (aqui há uma cópia do arquivo mysql.cnf):
+config.vm.provision "shell", inline: "cat /configs/mysqld.cnf > /etc/mysql/mysql.conf.d/mysqld.cnf"COPIAR CÓDIGO
+Reinicie o serviço do MySQL:
+config.vm.provision "shell", inline: "service mysql restart"COPIAR CÓDIGO
+Reconfigure a pasta compartilhada entre a VM e o host:
+config.vm.synced_folder "./configs", "/configs"
+config.vm.synced_folder ".", "/vagrant", disabled: true 
+
+Nesta aula, aprendemos que:
+
+O provisionador mais simples é o Shell Provisioner
+Provisionamento significa instalar e configurar tudo o que for necessário para rodar algum serviço ou aplicação
+Para usar o Shell Provisionar, basta definir um script com os passos de instalação:
+Vagrant.configure("2") do |config|
+config.vm.provision "shell", path: "script.sh"
+endCOPIAR CÓDIGO
+Os comandos do Shell Provisioner também podem ser usados de maneira inline ou remoto:
+$script = <<-SCRIPT
+  echo Instalando MySQL
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.provision "shell", inline: $script
+endCOPIAR CÓDIGO
+Ou:
+
+Vagrant.configure("2") do |config|
+  config.vm.provision "shell", path: "https://seu-servidor/script.sh"
+endCOPIAR CÓDIGO
+O Vagrant automaticamente compartilha uma pasta entre o host e o guest (Synced Folder)
+Por padrão, é compartilhada a pasta onde se encontra o Vagrantfile
+Na máquina guest, podemos acessar a pasta pelo caminho /vagrant
+A pasta compartilhada pode ser reconfigurada no Vagrantfile:
+config.vm.synced_folder "src/", "/public"
+portalentregahom
+
+
+Chegou a hora de você seguir todos os passos realizados por mim durante esta aula. Caso já tenha feito, excelente. Se ainda não, seguem os passos mínimos:
+
+Dentro do Vagrantfile, defina dois ambientes, um para o MySQL e outro para o PHP:
+$script_mysql = <<-SCRIPT
+  #codigo omitido
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+
+  config.vm.define "mysqldb" do |mysql|
+    #configurações da instalação MySQL omitidas
+  end
+
+  config.vm.define "phpweb" do |phpweb|
+    #aqui vem os passos para instalar PHP
+  end
+endCOPIAR CÓDIGO
+No ambiente mysqldb, coloque todos os passos da configuração MySQL
+Dentro da configuração do ambiente phpweb, defina a rede (public ou private) e o port-forwarding, por exemplo:
+phpweb.vm.network "forwarded_port", guest: 8888, host: 8888
+phpweb.vm.network "public_network", ip: "192.168.1.25"COPIAR CÓDIGO
+Ainda no ambiente phpweb, use o shell provisioner para instalar o Puppet:
+phpweb.vm.provision "shell", inline: "apt-get update && apt-get install -y puppet"COPIAR CÓDIGO
+Ainda no ambiente phpweb, chame o manifest_file do puppet:
+phpweb.vm.provision "puppet" do |puppet|
+  puppet.manifests_path = "./configs/manifests"
+  puppet.manifest_file = "phpweb.pp"
+endCOPIAR CÓDIGO
+Na pasta configs do seu projeto, crie uma nova pasta manifests
+Nessa pasta configs/manifests, coloque o arquivo phpweb.pp, disponível aqui
+Na raiz do seu projeto, execute o comando vagrant validate para validar o Vagrantfile
+Após a validação, suba as máquinas com o comando vagrant up
+
+No mesmo Vagrantfile, podemos configurar várias máquinas, separando as configurações (Multi-Machine)
+O Puppet é uma ferramenta popular para provisionar uma máquina
+Provisionamento significa instalar e configurar tudo o que for necessário para rodar algum serviço ou aplicação
+Com Puppet, podemos definir os passos de instalação de mais alto nível, facilitando a manutenção
+Os passos de instalação são configurados em um arquivo manifest, com a extensão .pp
+Para rodar o Puppet, é preciso instalar um cliente na máquina virtual
+O Vagrant integra e consegue chamar o Puppet a partir do comando vagrant provision
+Ao rodar o comando vagrant up pela primeira vez, ele também roda o provisionamento
+Para configurar o Puppet dentro do Vagrantfile, basta usar:
+config.vm.provision "puppet" do |puppet|
+  puppet.manifests_path = "manifests"
+  puppet.manifest_file = "wep.pp"
+end
+
+Chegou a hora de você seguir todos os passos realizados por mim durante esta aula. Caso já tenha feito, excelente. Se ainda não, seguem os passos mínimos.
+
+Obs: Os passos abaixo assumem que você está usando Windows. Ou seja, usaremos uma máquina virtual com Ubuntu para instalar o Ansible.
+
+Quem é usuário Linux, pode escolher, ou instala o Ansible diretamente na maquina host, ou usa uma máquina virtual, como no exemplo abaixo.
+
+Seguem os passos:
+
+Dentro do Vagrantfile, defina mais um ambiente, com o nome mysqlserver. Escolha a configuração de rede, baseado na sua necessidade:
+
+config.vm.define "mysqlserver" do |mysqlserver|
+mysqlserver.vm.network "public_network", ip: "192.168.1.22"
+mysqlserver.vm.provision "shell", inline: "cat /vagrant/configs/id_bionic.pub >> .ssh/authorized_keys"
+endCOPIAR CÓDIGO
+Dentro do Vagrantfile, defina o ambiente que vai executar o Ansible, e configure a rede:
+
+config.vm.define "ansible" do |ansible|
+ansible.vm.network "public_network", ip: "192.168.1.26"
+endCOPIAR CÓDIGO
+No Vagrantfile, no ambiente ansible, adicione as configurações para instalar o Ansible, copiar a chave privada e executar o playbook:
+
+ansible.vm.provision "shell",
+    inline: "apt-get update &&  \
+               apt-get install -y software-properties-common && \
+               apt-add-repository --yes --update ppa:ansible/ansible && \
+               apt-get install -y ansible "
+
+ansible.vm.provision "shell",
+    inline: "cp /vagrant/id_bionic /home/vagrant/id_bionic && \
+                chmod 600 /home/vagrant/id_bionic"
+
+ansible.vm.provision "shell",
+    inline: "ansible-playbook -i /vagrant/configs/ansible/hosts \
+                  /vagrant/configs/ansible/playbook.yml"COPIAR CÓDIGO
+Crie uma nova pasta ansible, dentro da pasta configs
+Coloque o arquivo hosts e playbook.yml na pasta configs/ansible
+Suba as duas máquinas (mysqlserver e ansible):
+vagrant up mysqlserver ansibleCOPIAR CÓDIGO
+
+Mas afinal, qual é a diferença entre Puppet e Ansible?
+
+Podemos resumir de alguns modos:
+
+O Ansible é uma ferramenta principalmente de provisionamento, ou seja, é utilizado para fornecermos ferramentas e preparar nosso ambiente para determinada tarefa.
+
+Outro fato sobre o Ansible é que tudo que escrevemos em nossos playbooks é convertido em código python. O que significa que devemos ter o python instalado nas máquinas em que o playbook será executado.
+
+Os playbooks devem ser executados em cada máquina desejada para execução do serviço, ou seja, para cada vez que desejarmos fazer um novo provisionamento para as máquinas, precisamos executar o playbook novamente.
+
+O Puppet, é uma ferramenta de gerenciamento de configuração, ou seja, utilizamos o Puppet para definir e manter as configurações de nosso ambiente.
+
+Com o Puppet, utilizamos arquivos de manifest para definir como será feita e estabelecida a configuração das máquinas que rodarão o puppet-agent. Para que isso funcione, devemos ter o puppet-agent instalado em todas as máquinas que serão gerenciadas pelo Puppet, e o puppet-server na máquina que será a provedora de configurações.
+
+Uma vez definido como as máquinas serão configuradas, executamos o comando para que as máquinas com o puppet-agent comecem a seguir as configurações especificadas em nosso arquivo manifest.
+
+Concluindo: o Puppet é uma ferramenta de gerenciamento de configuração e o Ansible é uma ferramenta de provisionamento, ou seja, utilizamos o Puppet para validar a configuração de nosso ambiente e o Ansible para instalar e preparar o ambiente. Mas como assim, isso não seria provisionamento para os dois casos? Na verdade, não.
+
+Vamos ver um exemplo:
+
+Temos uma máquina e devemos construir o ambiente para nosso trabalho. Como queremos definir as configurações iniciais de uma máquina, seria interessante provisioná-la inicialmente, já que sequer temos o que manter de configuração. Depois de definido o ambiente, precisamos manter essas configurações. Caso algum programa ou arquivo seja removido, queremos que o estado da máquina seja restaurado para o estado original, sem afetar o funcionamento . Para garantirmos que isso aconteça, podemos utilizar o gerenciamento de configuração do Puppet, que consegue manter a máquina no estado padrão sem que ninguém precise reexecutar o arquivo de manifest. O Puppet faz essa verificação de configuração com intervalo customizável, chamamos isso de self-healing.
+
+O Ansible, assim como o Puppet, é uma ferramenta para provisionar uma máquina
+O Ansible envia comandos SSH para a máquina a ser configurada, e não precisa de um cliente instalado (apenas o Python)
+Os passos de instalação são configurados de alto nível, dentro de um playbook.
+O arquivo de inventário (hosts) define os alvos da instalação
+O Vagrant integra o Ansible e tem uma configuração dedicada:
+config.vm.provision "ansible" do |ansible|
+ ansible.inventory_path = "hosts"
+ ansible.playbook = "playbook.yml"
+end
+
+No Vagrantfile, podemos definir configurações específicas do provedor (hypervisor)
+As configurações são referente à memória, CPU, rede ou interface gráfica, entre outras opções
+Para listar todos as boxes baixadas, use o comando: vagrant box list
+Para remover as boxes desatualizadas: vagrant box prune ou vagrant box remove <nome>
+Para listar todas as máquinas que foram criadas no host, use: vagrant global-status --prune
+Através do ID da máquina, podemos controlar a máquina virtual fora da pasta do projeto, por exemplo: vagrant destroy -f <ID-da-VM>
+
+O Docker é uma tecnologia para criar, rodar e administrar containers, baseado no Linux
+Containers virtualizam o sistema operacional
+Máquinas virtuais virtualizam o hardware
+Containers são mais leves do que máquinas virtuais
+Ambos, containers e máquinas virtuais, servem para rodar e isolar processos e aplicações

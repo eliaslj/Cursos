@@ -1,0 +1,93 @@
+#Instalação de ambiente
+
+#Instalando o Java 10
+
+$ sudo add-apt-repository ppa:linuxuprising/java
+$ sudo apt update 
+$ sudo apt install oracle-java10-installer
+
+$java --version
+
+## Ferramentas de build
+
+### Gradle
+https://gradle.org/
+
+- versão 4.7
+$ mkdir /opt/gradle
+$ cd Global\Labs\Academy
+$ unzip -d /opt/gradle gradle-4.7-bin.zip
+$ ls /opt/gradle/gradle-4.7
+ export PATH=$PATH:/opt/gradle/gradle-4.7/bin.zip
+gradle -v
+
+ sudo apt purge gradle //old versions
+ 
+[SDKMan! para gerenciamento e instalação do Java e Maven](https://sdkman.io/)
+source /home/elias/.sdkman/bin/sdkman-init.sh
+sdk list java | less
+sdk install java 11.0.6.hs-adpt
+sdk use java 11.0.6.hs-adpt
+java --version
+
+sdk list maven 
+sdk install maven 3.6.3
+sdk use maven 3.6.3
+mvn --version 
+
+
+ 
+ 
+ ### Maven 
+ https:// maven.apache.org/
+ 
+ -versão 3.5.3
+ -legado do ANT
+ -Baseado em XML
+
+$ unzip -d /opt/maven apache-maven-3.5.3-bin.zip
+$ ls /opt/maven/apache-maven-3.5.3
+$ sudo apt purge maven //old versions
+export PATH=$PATH:/opt/maven/apache-maven-3.5.3/bin
+
+$ mvn -v
+
+### Wrappers
+https://github.com/takari/maven-wrapper
+https://docs.gradle.org/current/userguide/gradle_wrapper.html
+
+$ gradle wrapper
+$ ./gradlew -v
+
+$ mvn -N io.takari:maven:wrapper
+$ ./mvnw -v 
+
+- Garante a mesma versão para todos os desenvolvedores
+
+## Instalando o Intellij
+
+
+$ cd ~/firefox
+$ ./firefox --new-instance --safe-mode
+
+https://www.jetbrains.com/idea/
+$ cd Global\Labs\Academy
+sudo tar -xzf ideaIC-2018.1.4.tar.gz
+$ cd idea-IC 181.5087.20/bin/
+$ ./idea.sh 
+
+
+/etc/profile.d/gradle.sh
+export GRADLE_HOME=/opt/gradle/gradle-7.1 export PATH=${GRADLE_HOME}/bin:${PATH}
+
+
+# diolive
+
+Api rest para gerenciamento de ponto e controle de acesso.
+
+Java | Spring boot | Spring Data Jpa | Hibernate | Lombok | swagger
+
+http://localhost:8081/h2/
+http://localhost:8081/swagger-ui.html
+
+Helper

@@ -1,0 +1,80 @@
+-Crie um branch
+git checkout -b incluir_coluna_relatorioFull 
+git status
+
+-Adicione o arquivo
+touch
+git add 
+git commit -m ""
+
+git config --list
+
+trocar usuario
+git config --global user.name "eliaslemes"
+git config --global user.name "eliaslj"
+git config --global user.email "eliaslemes@algartelecom.com.br"
+git config --global user.email "eliaslemesjesus@gmail.com"
+
+
+git add <arquivo>
+git commit -m "comentários das alterações"
+git push origin master
+git remote add origin <servidor>
+
+crie um novo branch chamado "funcionalidade_x" e selecione-o usando
+git checkout -b funcionalidade_x
+retorne para o master usando
+git checkout master
+e remova o branch da seguinte forma
+git branch -d correcao_rotina
+um branch não está disponível a outros a menos que você envie o branch para seu repositório remoto
+git push origin <funcionalidade_x>
+
+
+atualizar & mesclar
+para atualizar seu repositório local com a mais nova versão, execute
+git pull origin master
+na sua pasta de trabalho para obter e fazer merge (mesclar) alterações remotas.
+para fazer merge de um outro branch ao seu branch ativo (ex. master), use
+git merge <branch>
+em ambos os casos o git tenta fazer o merge das alterações automaticamente. Infelizmente, isto nem sempre é possível e resulta em conflitos. Você é responsável por fazer o merge estes conflitos manualmente editando os arquivos exibidos pelo git. Depois de alterar, você precisa marcá-los como merged com
+git add <arquivo>
+antes de fazer o merge das alterações, você pode também pré-visualizá-as usando
+git diff <branch origem> <branch destino>
+
+rotulando
+é recomendado criar rótulos para releases de software. Este é um conhecido conceito, que também existe no SVN. Você pode criar um novo rótulo chamado 1.0.0 executando o comando
+git tag 1.0.0 1b2e1d63ff
+o 1b2e1d63ff representa os 10 primeiros caracteres do id de commit que você quer referenciar com seu rótulo. Você pode obter o id de commit com
+git log
+você pode também usar menos caracteres do id de commit, ele somente precisa ser único.
+
+sobrescrever alterações locais
+No caso de você ter feito algo errado (que seguramente nunca acontece ;) ) você pode sobrescrever as alterações locais usando o commando
+git checkout -- <arquivo>
+isto substitui as alterações na sua árvore de trabalho com o conteúdo mais recente no HEAD. Alterações já adicionadas ao index, bem como novos arquivos serão mantidos.
+
+Se ao invés disso você deseja remover todas as alterações e commits locais, recupere o histórico mais recente do servidor e aponte para seu branch master local desta forma
+git checkout master
+git fetch origin
+git reset --hard origin/master
+git checkout -b newbranch
+
+dicas úteis
+Interface gráfica padrão
+gitk
+usar saídas do git coloridas
+git config color.ui true
+exibir log em apenas uma linha por commit
+git config format.pretty oneline
+fazer inclusões interativas
+git add -i
+
+
+https://woliveiras.com.br/posts/comandos-mais-utilizados-no-git/
+
+https://www.treinaweb.com.br/blog/comandos-do-git-que-voce-precisa-conhecer-parte-1/
+
+
+
+

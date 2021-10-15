@@ -1,0 +1,330 @@
+O script que o instrutor segue durante a aula é o seguinte:
+
+# Configurando a chave privada criada no ambiente da VM no Jenkins
+    cat ~/.ssh/id_rsa
+    Credentials -> Jenkins -> Global Credentials -> Add Crendentials -> SSH Username with private key [ github-ssh ]
+# Criando o primeiro  job que vai monitorar o repositorio
+    Novo job -> jenkins-todo-list-principal -> Freestyle project:
+    Esse job vai fazer o build do projeto e registrar a imagem no repositório.
+    # Gerenciamento de código fonte:
+        Git: git@github.com:rafaelvzago/treinamento-devops-alura.git [SSH]
+        Credentials: git (github-ssh)
+        Branch: master
+    # Trigger de builds
+        Pool SCM: * * * * *
+    # Ambiente de build
+        Delete workspace before build starts
+    # Salvar
+    # Validar o log em: Git Log de consulta periódicaCOPIAR CÓDIGO
+[00:00] Bom pessoal, agora chegou uma parte legal, a gente vai criar nosso primeiro job no Jenkins e é muito simples de fazer. Antes de criar o job eu preciso fazer algumas configurações dentro do meu ambiente.
+
+[00:11] Então a gente vai lá no nosso Jenkins e eu vou aqui em credenciais, vai pedir pra eu autenticar aqui e vamos autenticar de novo, dentro de credenciais eu vou clicar aqui em Jenkins, as credenciais globais, e eu vou adicionar uma credencial nova. Que tipo de credencial que eu vou adicionar? SSH com username e chave privada. Por que que eu preciso fazer isso? Pra que eu consiga interagir com meu repositório no GitHub.
+
+[00:46] Então o que eu vou fazer? Eu vou criar o meu id aqui, eu vou chamar de github-ssh. Isso aqui é só um id dentro do Jenkins pra você referenciar em jobs futuros, e é legal a gente manter o padrão porque os outros jobs utilizam esse mesmo id. A descrição eu vou colocar a mesma. O usuário do GitHub é sempre git, não precisa ser seu usuário porque você vai conectar com chave.
+
+[01:14] E aí eu vou ter que adicionar minha chave, como é que eu faço isso? Eu clico aqui pra entrar diretamente, clico pra adicionar a minha chave, e ele quer saber qual que é a minha chave. Então vamos voltar aqui no nosso terminal.
+
+[01:26] Aqui no nosso terminal a gente tem, dentro do nosso diretório de SSH, o seguinte arquivo: id_rsa, ele não é um arquivo id_rsa.pub, aquela lá é a chave pública. Agora eu preciso da chave privada, por quê? É o Jenkins que vai interagir com o meu GitHub, assim como o nosso terminal interagiu com o GitHub agora é a vez do Jenkins.
+
+[01:55] Então, pra isso, eu preciso copiar a minha chave privada pro Jenkins. Então eu seleciono aqui, lembrando que vocês nunca devem passar essa chave pra ninguém, e a gente adiciona aqui como texto.
+
+[02:14] Agora que a gente adicionou não tem passphrases, vocês lembram que a gente não configurou o passphrase. A gente dá um ok, nossa credencial tá configurada, agora é a hora de criar o nosso primeiro job.
+
+[02:26] Então a gente vem aqui em Jenkins, Novo job, e a gente vai dar um nome pra esse job. O nome que a gente vai usar pra esse job vai ser jenkins-todo-list-principal. Por que que a gente deu esse nome de principal? Porque a maioria das interações com o banco vão ser feitas através desse job, e esse job é do tipo Freestyle. A gente vai entender a diferença de cada um deles, do Freestyle pro Pipeline, por exemplo, mas dessa vez a gente vai escolher o Freestyle.
+
+[03:05] Clicamos aqui no Freestyle, vamos dar um ok. Ele vai criar o primeiro job. O job vai ser executado de acordo com as configurações que a gente definir. Então, primeira coisa que a gente vai fazer, a gente vai avisar que é um projeto git e vai copiar a URL do git. Atentem-se pra colocar o git@github pra pegar o clone da configuração via SSH e não com Https, isso faz diferença na hora de commitar o seu código.
+
+[03:43] Aí a gente colocou aqui o nosso GitHub, se eu dar um tab ele vai falhar, ele vai falar "olha, eu não consigo conectar", por que? Porque esse repositório, do jeito que eu coloquei pra acessar, ele precisa ter as credenciais de SSH. Então eu venho aqui e seleciono github.ssh, automaticamente ele já fez a conexão e já entendeu que tá funcionando. Ou seja, agora nosso job já é capaz de ler e interagir com o GitHub, com nosso repositório.
+
+[04:14] Algumas coisinhas que a gente vai ter que fazer: dentro do ambiente de build a gente vai marcar pra deletar o workspace antes do projeto iniciar, a gente faz isso pra evitar que fique alguma sujeira de código porque, na verdade, o workspace nada mais é do que um diretório dentro do Jenkins, então eu preciso limpar esse cara antes de fazer a configuração.
+
+[04:38] Outra coisa que a gente vai fazer pra ele é o seguinte: ele vai consultar o git periodicamente. Primeiro vamos configurar, depois eu vou explicar pra vocês a diferença. Pra quem já mexeu com o crontab é a mesma sintaxe. Então eu vou colocar aqui primeiro, pra que ele verifique a cada minuto, a cada hora, a cada dia da semana, a cada mês e a cada dia do mês.
+
+[05:03] Vai uma ressalva aqui, não significa que seu eu colocar mais passos pra baixo pra fazer um build, alguma coisa que impacte mais o código, que ele vá fazer isso a todo minuto. Nessa agenda que eu coloquei ele vai verificar a cada minuto se o meu repositório tem alguma alteração. Vamos ver isso aí como vai ficar.
+
+[05:27] A gente vai dar um salvar, a gente vai esperar um pouquinho, ele vai disparar a primeira vez, ele vai consultar o repositório automaticamente, ele faz isso todo minuto. Vamos esperar um pouquinho que aí ele já vai aparecer.
+
+[05:46] Olha lá, apareceu aqui pra gente, primeiro processo pendente, e ele começou a executar. Ele tem a hora, isso aqui é a hora do nosso Vagrant, da nossa máquina virtual, tá diferente da minha, mas não tem problema. Aqui ele executou com sucesso, eu vou clicar aqui nesse cara.
+
+[06:05] Olha a saída do console, esse aqui é o nosso workspace, ele conectou no nosso repositório e viu que tem um código lá. Como não tinha nada, ele já sabe exatamente a partir de onde ele vai trabalhar, ou seja, a partir de agora todas as vezes que nós mudarmos o código dentro do GitHub, ele vai ficar checando e vai startar daqui para frente os builds que a gente pedir.
+
+[06:34] Pessoal, antes da próxima aula tem mais uma informação que eu queria passar pra vocês: depois que a gente fez toda a instalação, tanto do ambiente quanto do Jenkins, a gente tem que fazer dois passos a mais agora, que seria o que? Adicionar tanto o meu usuário, no caso o usuário Vagrant ou o usuário de vocês, na máquina de vocês, e o usuário do Jenkins no grupo do Docker.
+
+[07:01] O Docker foi instalado automaticamente, a gente vai falar deles mais para frente, mas é um passo adicional agora que vai fazer toda a diferença nos nossos jobs. E os comandos são muito simples. O primeiro comando a gente vai adicionar no grupo do Docker o usuário, o user, essa variável $USER é o próprio usuário que eu tô logado, e o usuário do Jenkins. Só pra gente evitar problemas de permissão na hora de rodar os containers.
+
+[07:32] Pra efetivar todas as nossas alterações, a gente vai sair do nosso Vagrant e vai dar um vagrant reload. Assim as seções vão ser recarregadas com as permissões corretas e eu não vou mais precisar usar sudo pra rodar nenhum container.
+
+[07:50] Então, agora, qual que é a próxima aula? Nós vamos entender passo a passo como que o build dessa aplicação é feito, pra que no futuro a gente consiga automatizar utilizando Jenkins e as nossas ferramentas que estão instaladas aqui.
+
+
+1) Configure o seu ambiente inicial. Você pode se guiar pelo script que o instrutor seguiu durante a aula:
+
+# Configurando o ambiente e conectando máquina virtual:
+    # Máquina virtual com o vagrant
+    # Requisitos: http://vagrantup.com e https://www.virtualbox.org/
+        # Baixar e descompactar o arquivo 1110-aula-inicial.zip
+        # Entendendo o Vagranfile
+        # Subindo o ambiente virtualizado
+            vagrant plugin install vagrant-disksize
+            vagrant up
+            vagrant ssh
+                ps -ef | grep -i mysql # Verificando se o MySQL esta rodando
+                mysql -u devops -p # Senha mestre; show databases
+                mysql -u devops_dev -p # Senha mestre; show databases
+                # Instalando o Jenkins
+                    cd /vagrant/scripts
+                # Visualizar o conteudo do arquivo de instalacao do jenkins
+                    sudo ./jenkins.sh
+
+                # Acessar:  192.168.33.10:8080
+                    sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+                # Credenciais
+                    Nome de usuário: alura
+                    Senha: mestre123
+                    Nome completo: Jenkins Alura
+                    Email: aluno@alura.com.br
+
+                # Reload nas permissoes do docker
+                    sudo usermod -aG docker $USER
+                    sudo usermod -aG docker jenkins
+                    exit
+            vagrant reloadCOPIAR CÓDIGO
+2) Versione o seu código, que você baixou no início da aula. Você pode se guiar pelo script que o instrutor seguiu durante a aula:
+
+# Passos para a configuracao do git e versionamento do codigo
+# Criar uma conta em github.com
+    ssh-keygen -t rsa -b 4096 -C "<seu-usuario>@gmail.com"
+    cat ~/.ssh/id_rsa.pub
+# Configurar a chave no github
+    git config --global user.name "<seu-usuario>"
+    git config --global user.email <seu-usuario>@<seu-providor>
+    ssh -T git@github.com
+# Fazer download do código nos anexos e copiar para o diretório compartilhado app
+    cd /vagrant/jenkins-todo-list
+    git init
+    git add .
+    git commit -m "Meu primeiro commit"
+    git log
+# Criar um repositório no github: jenkins-todo-list
+    git remote add origin git@github.com:<seu-usuario>/jenkins-todo-list.git
+    git push -u origin masterCOPIAR CÓDIGO
+3) Crie o seu primeiro job, que vai monitorar o seu repositório. Você pode se guiar pelo script que o instrutor seguiu durante a aula:
+
+# Configurando a chave privada criada no ambiente da VM no Jenkins
+    cat ~/.ssh/id_rsa
+    Credentials -> Jenkins -> Global Credentials -> Add Crendentials -> SSH Username with private key [ github-ssh ]
+# Criando o primeiro  job que vai monitorar o repositorio
+    Novo job -> jenkins-todo-list-principal -> Freestyle project:
+    Esse job vai fazer o build do projeto e registrar a imagem no repositório.
+    # Gerenciamento de código fonte:
+        Git: git@github.com:rafaelvzago/treinamento-devops-alura.git [SSH]
+        Credentials: git (github-ssh)
+        Branch: master
+    # Trigger de builds
+        Pool SCM: * * * * *
+    # Ambiente de build
+        Delete workspace before build starts
+    # Salvar
+    # Validar o log em: Git Log de consulta periódica
+	
+	
+	O script que o instrutor segue durante a aula é o seguinte:
+
+# Passos para configurar a app e subir manualmente
+    # Criando o arquivo .env (temporário)
+        cd /vagrant/jenkins-todo-list/to_do/
+        vi .env
+            [config]
+            # Secret configuration
+            SECRET_KEY = 'r*5ltfzw-61ksdm41fuul8+hxs$86yo9%k1%k=(!@=-wv4qtyv'
+
+            # conf
+            DEBUG=True
+
+            # Database
+            DB_NAME = "todo_dev"
+            DB_USER = "devops_dev"
+            DB_PASSWORD = "mestre"
+            DB_HOST = "localhost"
+            DB_PORT = "3306"
+
+    # Instalando o venv
+        sudo pip3 install virtualenv nose coverage nosexcover pylint
+    # Criando e ativando o venv (dev)
+        cd ../    
+        virtualenv  --always-copy  venv-django-todolist
+        source venv-django-todolist/bin/activate
+        pip install -r requirements.txt
+    # Fazendo a migracao inicial dos dados
+        python manage.py makemigrations
+        python manage.py migrate
+    # Criando o superuser para acessar a app
+        python manage.py createsuperuser
+    # Repetir o processo de migracaoção para o ambiente de produção:
+        vi to_do/.env
+            [config]
+            # Secret configuration
+            SECRET_KEY = 'r*5ltfzw-61ksdm41fuul8+hxs$86yo9%k1%k=(!@=-wv4qtyv'
+
+            # conf
+            DEBUG=True
+
+            # Database
+            DB_NAME = "todo"
+            DB_USER = "devops"
+            DB_PASSWORD = "mestre"
+            DB_HOST = "localhost"
+            DB_PORT = "3306"
+
+    # Fazendo a migracao inicial dos dados
+        python manage.py makemigrations
+        python manage.py migrate
+    # Criando o superuser para acessar a app
+        python manage.py createsuperuser
+
+    # Verificar o ip do servidor
+        ip addr
+    # Rodando a app
+        python manage.py runserver 0:8000
+        http://192.168.33.10:8000COPIAR CÓDIGO
+[00:00] Bom pessoal, agora tá na hora da gente fazer o build manual da nossa aplicação. Porque que a gente vai fazer isso? Pra que quando a gente automatize toda construção, a gente consiga enxergar a diferença de velocidade e de agilidade de um processo pro outro.
+
+[00:15] Pra fazer o build, a aplicação é muito simples. Primeiro, dentro do meu diretório da aplicação, eu preciso criar um arquivo ".env". Que que esse arquivo ".env" contém? Vou pegar aqui um modelo dele. Basicamente, ele tem algumas configurações pra aplicação rodar, como por exemplo, o secret key que é utilizado pra fazer os hash de senha, por exemplo, nome de usuários de banco de dados, nome do banco de dados, a porta e onde o banco tá localizado.
+
+[00:51] Atentem-se pro seguinte: eu estou conectando do banco de dados de dev. E porque que eu tô criando esse arquivo? Vamos primeiro salvar o arquivo aqui. A gente usou o VI pra quem não tá muito acostumado. Entrou no arquivo, aperto o I, colo o conteúdo, Esc, :x. A gente salvou o arquivo aqui, se eu der um "ls -la" tá aqui o meu arquivo env.
+
+[01:14] Porque que a gente não coloca o arquivo env dentro da aplicação versionada? Porque isso vai pro GitHub, ou até, às vezes, pra um repositório privado. O problema é que o arquivo env contém as informações de conexão de banco, por exemplo, isso não pode ficar público.
+
+[01:30] Com o arquivo copiado, que que a gente faz agora? A gente vai instalar algumas dependências do Python com o PIP, que é o gerenciador de pacotes do Python. Mandei instalar, ele tá instalando, é rápida a instalação, ele busca nos repositórios e faz a instalação pra gente.
+
+[01:55] Legal, a instalação dos pacotes feita, o que eu vou fazer? Eu vou criar um Virtualenv pro Python, pra isolar a minha aplicação. Vocês tão percebendo o trabalho que dá fazer manual o build disso daqui. Então eu vou criar um Virtualenv, ele vai isolar os pacotes da minha aplicação. Legal, ele instalou os pacotes da minha aplicação e agora eu vou ativar o meu Virtualenv.
+
+[02:25] Legal, Virtualenv ativado, eu consigo ver pelo começo do bash agora. Então o que eu tenho que pedir pra ele fazer agora? Instalar todos os requerimentos da minha aplicação. Se eu der um cat nesse arquivo vocês vão ver que tem várias dependências. Então, pra isso, eu vou executar o pip install - r requirements.
+
+[02:44] Isso é legal ver, enquanto tá rodando, que tomar conta de uma aplicação, ou deployar uma aplicação, você não precisa, exatamente, configurar todo o ambiente dela manualmente porque a gente tá tendo muito trabalho pra fazer isso. O legal é a gente automatizar. Então as próximas aulas vão mostrar como que isso é aqui é feito de uma maneira invisível pra quem tá aplicando a Integração Contínua.
+
+[03:09] Normalmente quando a gente roda o pip install eventualmente ele tem algum problema de cache, é só rodar de novo, só pra validar a instalação, mas foi tudo instalado. Isso não é um erro de aplicação e sim um erro do próprio PIP mesmo, que quando a gente automatiza não aparece.
+
+[03:28] Legal, então a gente tá com as dependências instaladas, o que que a gente vai fazer agora? Tem um passo que a gente vai executar agora, uma sequência de passos na verdade, que é específico do Django. Como o nosso curso é de Jenkins a gente vai criar esse ambiente na mão na primeira vez, é uma vez só que a gente vai criar, que são as migrações de banco, que é onde ele vai criar as tabelas do banco de dados.
+
+[03:55] Isso não vai entrar na nossa Integração Contínua porque é específico do Python. Se você trabalha com Java você vai ter que lidar com isso na hora de criar a sua aplicação. Você pode automatizar esses passos, isso é possível, mas como o foco do curso não é Django a gente só vai criar a primeira vez. É uma vez só que a gente executa e não executa mais.
+
+[04:18] Então a gente vai rodar as migrações do banco, a gente vai criar as migrações do banco, baseado nos modelos e a gente vai migrar o banco. Então ele tá fazendo toda a configuração de tabelas e permissões, e agora o que eu tenho que fazer? Eu tenho que criar um super usuário, isso é específico do Django. É o usuário admin, o root do Django pra acessar as aplicações.
+
+[04:51] Então eu vou criar um usuário aqui com o nome alura, o endereço de email vai ser aluno@alura.com.br, a senha vai ser mestre123, vamos manter aquele padrãozinho mestre123 pra sempre lembrar. E o super usuário foi criado.
+
+[05:18] Bom, então agora tá na hora da gente ver a aplicação rodar, até agora a gente não viu como ela funciona, qual que é a carinha dela. A gente vai rodar um comando aqui que só é utilizado no ambiente de desenvolvimento, no pipeline nosso a gente vai usar outro que é para produção. Startei a aplicação.
+
+[05:39] Então agora que a gente já colocou a aplicação pra rodar, a gente vai usar o mesmo IP que a gente utilizou pra abrir o Jenkins, pra abrir a aplicação, porque eles estão rodando no mesmo servidor. Só que o que muda agora é a porta que, ao invés de ser a porta 8080, que é onde o Jenkins tá rodando, a gente vai usar a porta 8000. Aí a aplicação apareceu. O usuário e a senha a gente acabou de criar, alura, mestre123. Abrimos a aplicação aqui.
+
+[06:11] Pessoal, tem uma outra coisa que a gente vai fazer, primeiro a gente vai parar o nosso servidor aqui, que é o seguinte: tudo tá apontado pro banco de dev, a gente vai editar o nosso arquivo aqui e vai enxergar. Dentro do nosso arquivo de ambiente tá tudo apontado pra dev, só que a gente vai ter um ambiente de produção que é um outro schema e um outro usuário.
+
+[06:36] Então vamos rodar rapidinho as migrations pro usuário de produção. Então a gente apaga a parte dev, porque a gente já tem essa tabela criada, a senha é a mesma, a gente só vai rodar os migrations de novo, makemigrations, na verdade nem precisava porque já estavam criadas as migrações.
+
+[07:04] Agora o migrate vai fazer o que? Ele vai conectar no banco de produção, a gente trocou as tabelinhas lá e ele criou de novo. Isso é bem específico, só pra que na próxima etapa do build a gente não tenha problema. E a gente vai criar o super usuário da mesma maneira. Vamos criar os mesmos dados pra não ficar confuso, alura, aluno@alura.com.br, mestre123.
+
+[07:37] Legal, criou o usuário, a gente sobe a aplicação pra validar que tá tudo funcionando, atualiza aqui a aplicação. Logou, conectamos. Pra utilizar a aplicação é muito simples, você coloca o título da sua task, o texto, pode marcar como completa ou não, e dar um salvar, sua task tá aqui.
+
+[08:04] Bom pessoal, agora a gente acabou de ver o build manual, como ele é feito. Na próxima aula a gente vai acertar o último detalhe antes de colocar todo o nosso processo automatizado dentro do Jenkins. A gente se vê lá.
+
+
+
+Chegou a hora de você seguir todos os passos realizados por mim durante esta aula. Caso já tenha feito, excelente. Se ainda não, é importante que você execute o que foi visto nos vídeos para poder continuar com a próxima aula.
+
+1) Configure a sua aplicação e suba-a manualmente. Você pode se guiar pelo script que o instrutor seguiu durante a aula:
+
+# Passos para configurar a app e subir manualmente
+    # Criando o arquivo .env (temporário)
+        cd /vagrant/jenkins-todo-list/to_do/
+        vi .env
+            [config]
+            # Secret configuration
+            SECRET_KEY = 'r*5ltfzw-61ksdm41fuul8+hxs$86yo9%k1%k=(!@=-wv4qtyv'
+
+            # conf
+            DEBUG=True
+
+            # Database
+            DB_NAME = "todo_dev"
+            DB_USER = "devops_dev"
+            DB_PASSWORD = "mestre"
+            DB_HOST = "localhost"
+            DB_PORT = "3306"
+
+    # Instalando o venv
+        sudo pip3 install virtualenv nose coverage nosexcover pylint
+    # Criando e ativando o venv (dev)
+        cd ../    
+        virtualenv  --always-copy  venv-django-todolist
+        source venv-django-todolist/bin/activate
+        pip install -r requirements.txt
+    # Fazendo a migracao inicial dos dados
+        python manage.py makemigrations
+        python manage.py migrate
+    # Criando o superuser para acessar a app
+        python manage.py createsuperuser
+    # Repetir o processo de migracaoção para o ambiente de produção:
+        vi to_do/.env
+            [config]
+            # Secret configuration
+            SECRET_KEY = 'r*5ltfzw-61ksdm41fuul8+hxs$86yo9%k1%k=(!@=-wv4qtyv'
+
+            # conf
+            DEBUG=True
+
+            # Database
+            DB_NAME = "todo"
+            DB_USER = "devops"
+            DB_PASSWORD = "mestre"
+            DB_HOST = "localhost"
+            DB_PORT = "3306"
+
+    # Fazendo a migracao inicial dos dados
+        python manage.py makemigrations
+        python manage.py migrate
+    # Criando o superuser para acessar a app
+        python manage.py createsuperuser
+
+    # Verificar o ip do servidor
+        ip addr
+    # Rodando a app
+        python manage.py runserver 0:8000
+        http://192.168.33.10:8000COPIAR CÓDIGO
+2) Configure o daemon do Docker. Você pode se guiar pelo script que o instrutor seguiu durante a aula:
+
+# Expor o deamon do docker
+    sudo mkdir -p /etc/systemd/system/docker.service.d/
+    sudo vi /etc/systemd/system/docker.service.d/override.conf
+        [Service]
+        ExecStart=
+        ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376
+    sudo systemctl daemon-reload
+    sudo systemctl restart docker.serviceCOPIAR CÓDIGO
+3) Faça o build da sua imagem. Você pode se guiar pelo script que o instrutor seguiu durante a aula:
+
+# Sugested Plugins
+# Instalando os plugins
+    Gerenciar Jenkins -> Gerenciar Plugins -> Disponíveis
+        # docker
+    Install without restart -> Depois reiniciar o jenkins
+Gerenciar Jenkins -> Configurar o sistema -> Nuvem
+    # Name: docker
+    # URI: tcp://127.0.0.1:2376
+    # Enabled
+# This project is parameterized: 
+    DOCKER_HOST
+    tcp://127.0.0.1:2376
+# Voltar no job criado na aula anterior
+    # Manter a mesma configuracao do GIT para desenvolvimento
+    # Build step 1: Executar Shell
+# Validando a sintaxe do Dockerfile
+docker run --rm -i hadolint/hadolint < Dockerfile
+    # Build step 2: Build/Publish Docker Image
+        Directory for Dockerfile: ./
+        Cloud: docker
+        Image: rafaelvzago/django_todolist_image_build
+		
+		
+
+	
